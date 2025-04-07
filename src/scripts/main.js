@@ -1,5 +1,4 @@
-import {EventModule} from './events.js';
-
+import { EventModule } from './events.js';
 
 // Initialize the EventModule
 const eventModule = new EventModule();
@@ -21,4 +20,3 @@ if (scrollToTopButton) {
     eventModule.scrollToSection('#top');
   });
 }
-
