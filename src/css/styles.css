@@ -106,6 +106,7 @@ main.container {
 .logo {
   font-size: 1.5rem;
   color: var(--color-secondary);
+  margin-left: 2rem;
 }
 
 .main-nav {
