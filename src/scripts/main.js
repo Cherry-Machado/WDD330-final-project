@@ -1,5 +1,9 @@
 import { ui } from './ui.js';
-import { events } from './events.js';
+import { EventModule } from './events.js';
+
+// Initialize modules
+const ui = new UIModule();
+const events = new EventModule();
 
 // Start the app when DOM is loaded
 document.addEventListener('DOMContentLoaded', init);
