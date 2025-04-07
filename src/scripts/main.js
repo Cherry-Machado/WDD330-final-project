@@ -37,11 +37,6 @@ document.addEventListener('DOMContentLoaded', init);
 window.app = {
   ui,
   events,
-  storage,
-  animations,
-  tmdbApi,
-  omdbApi,
-  state,
 };
 
 // Error handling
