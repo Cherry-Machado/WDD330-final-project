@@ -1,18 +1,12 @@
 // Import modules
-import { UIModule } from './modules/ui.js';
-import { EventModule } from './modules/events.js';
-import { StorageModule } from './modules/storage.js';
-import { AnimationModule } from './modules/animations.js';
-import { TMDBApi } from './api/tmdb.js';
-import { OMDBApi } from './api/omdb.js';
+import { UIModule } from './scripts/ui.js';
+import { EventModule } from './scripts/events.js';
+import { AnimationModule } from './scripts/animations.js';
 
 // Initialize modules
 const ui = new UIModule();
 const events = new EventModule();
-const storage = new StorageModule();
 const animations = new AnimationModule();
-const tmdbApi = new TMDBApi('YOUR_TMDB_API_KEY');
-const omdbApi = new OMDBApi('YOUR_OMDB_API_KEY');
 
 // App state
 const state = {
