@@ -1,0 +1,46 @@
+{
+  "name": "movienightmayhem",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "prettier": {
+    "singleQuote": true,
+    "tabWidth": 2,
+    "semi": true
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended",
+      "plugin:prettier/recommended"
+    ],
+    "env": {
+      "browser": true,
+      "es2021": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 12,
+      "sourceType": "module"
+    },
+    "rules": {
+      "no-unused-vars": ["warn"],
+      "no-console": ["warn"]
+    }
+  },
+  "eslintIgnore": [
+    "node_modules",
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint src --fix",
+    "format": "prettier --write src"
+  },
+  "devDependencies": {
+    "eslint": "^9.24.0",
+    "prettier": "^3.5.3",
+    "vite": "^6.2.0"
+  }
+}
+
