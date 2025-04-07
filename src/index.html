@@ -1,300 +1,273 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta
-      property="og:title"
-      content="Movie Night Mayhem - WDD330 Final Project"
-    />
-    <meta
-      property="og:description"
-      content="Collaborative movie selection tool for groups with voting and scheduling features"
-    />
+
+<head>
+    <meta property="og:title" content="Movie Night Mayhem - WDD330 Final Project" />
+    <meta property="og:description"
+        content="Collaborative movie selection tool for groups with voting and scheduling features" />
     <meta property="og:image" content="assets/images/social-preview.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Movie Night Mayhem - WDD330 Final Project"
-    />
+    <meta name="description" content="Movie Night Mayhem - WDD330 Final Project" />
     <title>Movie Night Mayhem</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
     <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Merriweather:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Merriweather:wght@400;700&display=swap"
+        rel="stylesheet" />
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="stylesheet" href="/css/animations.css" />
-    <script type="module" src="/scripts/main.js"></script>
-  </head>
+</head>
 
-  <body>
+<body>
     <header class="main-header">
-      <div class="container">
-        <h1 class="logo">Movie Night Mayhem</h1>
-        <nav class="main-nav">
-          <button id="menu-toggle" aria-label="Toggle navigation menu">
-            ☰
-          </button>
-          <ul id="nav-menu">
-            <li><a href="#home-view" class="nav-link">Home</a></li>
-            <li>
-              <a href="#create-event-view" class="nav-link">Create Event</a>
-            </li>
-            <li><a href="#event-view" class="nav-link">Join Event</a></li>
-            <li><a href="#my-events-view" class="nav-link">My Events</a></li>
-          </ul>
-        </nav>
-      </div>
+        <div class="container">
+            <h1 class="logo">Movie Night Mayhem</h1>
+            <nav class="main-nav">
+                <button id="menu-toggle" aria-label="Toggle navigation menu">
+                    ☰
+                </button>
+                <ul id="nav-menu">
+                    <li><a href="#home-view" class="nav-link">Home</a></li>
+                    <li>
+                        <a href="#create-event-view" class="nav-link">Create Event</a>
+                    </li>
+                    <li><a href="#event-view" class="nav-link">Join Event</a></li>
+                    <li><a href="#my-events-view" class="nav-link">My Events</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main class="container">
-      <section id="home-view" class="view">
-        <div class="hero">
-          <div class="hero-content">
-            <h2 class="hero-title">Plan the Perfect Movie Night</h2>
-            <p class="hero-subtitle">Stop the debates - start watching!</p>
-            <div class="cta-container">
-              <button class="cta-btn primary" id="create-event-btn">
-                <span class="icon">🎬</span>
-                Create New Event
-              </button>
-              <button class="cta-btn secondary" id="join-event-btn">
-                <span class="icon">🎟️</span>
-                Join Existing Event
-              </button>
+        <section id="home-view" class="view">
+            <div class="hero">
+                <div class="hero-content">
+                    <h2 class="hero-title">Plan the Perfect Movie Night</h2>
+                    <p class="hero-subtitle">Stop the debates - start watching!</p>
+                    <div class="cta-container">
+                        <button class="cta-btn primary" id="create-event-btn">
+                            <span class="icon">🎬</span>
+                            Create New Event
+                        </button>
+                        <button class="cta-btn secondary" id="join-event-btn">
+                            <span class="icon">🎟️</span>
+                            Join Existing Event
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-illustration">
+                    <div class="popcorn"></div>
+                    <div class="film-strip"></div>
+                </div>
             </div>
-          </div>
-          <div class="hero-illustration">
-            <div class="popcorn"></div>
-            <div class="film-strip"></div>
-          </div>
-        </div>
-      </section>
-      <!--Create Event form-->
-      <section id="create-event-view" class="view">
-        <div class="form-container">
-          <h2 class="form-title">Create New Event</h2>
-          <form id="event-form" class="event-form">
-            <div class="form-group">
-              <label for="event-name">Event Name</label>
-              <input
-                type="text"
-                id="event-name"
-                required
-                placeholder="Friday Flick Fest"
-              />
+        </section>
+        <!--Create Event form-->
+        <section id="create-event-view" class="view">
+            <div class="form-container">
+                <h2 class="form-title">Create New Event</h2>
+                <form id="event-form" class="event-form">
+                    <div class="form-group">
+                        <label for="event-name">Event Name</label>
+                        <input type="text" id="event-name" required placeholder="Friday Flick Fest" />
+                    </div>
+
+                    <div class="datetime-group">
+                        <div class="form-group">
+                            <label for="event-date">Date</label>
+                            <input type="date" id="event-date" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="event-time">Time</label>
+                            <input type="time" id="event-time" required />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="event-description">Description</label>
+                        <textarea id="event-description" placeholder="Optional description..."></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn cancel">Cancel</button>
+                        <button type="submit" class="btn submit">Create Event</button>
+                    </div>
+                </form>
+                <!--Place Holder-->
+                <div class="movies-grid"></div>
+            </div>
+        </section>
+        <!--Event Dasboard-->
+        <section id="event-view" class="view">
+            <header class="event-header">
+                <h2 class="event-title">Friday Flick Fest</h2>
+                <div class="event-meta">
+                    <span class="event-date">🗓️ October 27, 2025</span>
+                    <span class="event-time">⏰ 7:30 PM</span>
+                </div>
+            </header>
+
+            <div class="dashboard-grid">
+                <!-- Movie Suggestions Column -->
+                <div class="movies-column">
+                    <div class="section-header">
+                        <h3>Movie Suggestions</h3>
+                        <button class="btn add-movie" id="suggest-movie-btn">
+                            ＋ Suggest Movie
+                        </button>
+                    </div>
+                    <div class="movies-grid">
+                        <!-- Movie cards will be injected here -->
+                        <!-- Comienza aquí place holder-->
+
+                        <!-- Placeholder Movie Cards -->
+                        <div class="movie-card placeholder">
+                            <div class="poster-loader"></div>
+                            <div class="text-loader" style="width: 80%"></div>
+                            <div class="text-loader" style="width: 60%"></div>
+                        </div>
+
+                        <div class="movie-card placeholder">
+                            <div class="poster-loader"></div>
+                            <div class="text-loader" style="width: 75%"></div>
+                            <div class="text-loader" style="width: 50%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comments Column -->
+                <div class="comments-column">
+                    <div class="section-header">
+                        <h3>Discussion</h3>
+                    </div>
+                    <div class="comments-list">
+                        <!-- Comments will be injected here -->
+                        <!-- Placeholder Comments -->
+                        <div class="comment placeholder">
+                            <div class="avatar-loader"></div>
+                            <div class="text-loader" style="width: 90%"></div>
+                            <div class="text-loader" style="width: 70%"></div>
+                        </div>
+
+                        <div class="comment placeholder">
+                            <div class="avatar-loader"></div>
+                            <div class="text-loader" style="width: 85%"></div>
+                            <div class="text-loader" style="width: 65%"></div>
+                        </div>
+                    </div>
+                    <form class="comment-form">
+                        <textarea placeholder="Add your comment..."></textarea>
+                        <button type="submit" class="btn submit">Post</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <!--My Events Section-->
+        <section id="my-events-view" class="view">
+            <div class="events-header">
+                <h2>My Movie Nights</h2>
+                <button class="btn new-event-btn" id="new-event-btn">
+                    ＋ New Event
+                </button>
             </div>
 
-            <div class="datetime-group">
-              <div class="form-group">
-                <label for="event-date">Date</label>
-                <input type="date" id="event-date" required />
-              </div>
-              <div class="form-group">
-                <label for="event-time">Time</label>
-                <input type="time" id="event-time" required />
-              </div>
+            <div class="events-grid">
+                <!-- Event cards will be dynamically inserted here -->
+                <div class="events-grid">
+                    <!-- Placeholder Event Cards -->
+                    <div class="event-card placeholder">
+                        <div class="text-loader" style="width: 70%"></div>
+                        <div class="text-loader" style="width: 50%"></div>
+                        <div class="participants-loader">
+                            <div class="avatar-loader"></div>
+                            <div class="avatar-loader"></div>
+                            <div class="avatar-loader"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="no-events">
+                    <img src="assets/images/popcorn.png" alt="No events" class="empty-state" />
+                    <p>No events found. Start by creating a new movie night!</p>
+                </div>
             </div>
+        </section>
+        <!--Movie Details Modal-->
+        <dialog id="movie-dialog" class="movie-modal">
+            <div class="modal-content">
+                <button class="close-btn" aria-label="Close">×</button>
+                <div class="movie-main">
+                    <div class="movie-poster">
+                        <img src="placeholder.jpg" alt="Movie poster" />
+                    </div>
+                    <div class="movie-info">
+                        <h2 class="movie-title">
+                            Movie Title <span class="year">(2025)</span>
+                        </h2>
+                        <div class="movie-meta">
+                            <span class="rating">⭐ 8.5/10</span>
+                            <span class="duration">⏳ 2h 15m</span>
+                            <span class="genre">🎭 Action, Adventure</span>
+                        </div>
+                        <p class="movie-plot">Movie plot description goes here...</p>
+                        <div class="action-buttons">
+                            <button class="btn vote-btn">👍 Vote for this Movie</button>
+                            <button class="btn trailer-btn">▶️ Play Trailer</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="movie-extra">
+                    <h3>Cast</h3>
+                    <div class="cast-grid">
+                        <!-- Cast members -->
+                    </div>
+                </div>
+            </div>
+        </dialog>
+        <!--Movies Search Modal-->
+        <dialog id="search-modal" class="search-modal">
+            <div class="search-header">
+                <h3>Search Movies</h3>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search movies..." />
+                    <button class="search-btn">🔍</button>
+                </div>
+            </div>
+            <div class="search-results">
+                <!-- Results injected here -->
+            </div>
+        </dialog>
+        <!--Surprise me Modal-->
+        <dialog id="surprise-modal" class="surprise-modal">
+            <div class="surprise-content">
+                <h3>Surprise Me!</h3>
+                <form class="surprise-form">
+                    <div class="filter-group">
+                        <label>Genre</label>
+                        <div class="genre-grid">
+                            <!-- Genre checkboxes -->
+                        </div>
+                    </div>
 
-            <div class="form-group">
-              <label for="event-description">Description</label>
-              <textarea
-                id="event-description"
-                placeholder="Optional description..."
-              ></textarea>
-            </div>
+                    <div class="filter-group">
+                        <label>Release Year</label>
+                        <div class="year-range">
+                            <input type="range" min="1920" max="2023" value="2020" />
+                            <output>2020-2025</output>
+                        </div>
+                    </div>
 
-            <div class="form-actions">
-              <button type="button" class="btn cancel">Cancel</button>
-              <button type="submit" class="btn submit">Create Event</button>
+                    <button type="submit" class="spin-btn">🎰 Spin the Wheel!</button>
+                </form>
             </div>
-          </form>
-          <!--Place Holder-->
-          <div class="movies-grid"></div>
-        </div>
-      </section>
-      <!--Event Dasboard-->
-      <section id="event-view" class="view">
-        <header class="event-header">
-          <h2 class="event-title">Friday Flick Fest</h2>
-          <div class="event-meta">
-            <span class="event-date">🗓️ October 27, 2025</span>
-            <span class="event-time">⏰ 7:30 PM</span>
-          </div>
-        </header>
-
-        <div class="dashboard-grid">
-          <!-- Movie Suggestions Column -->
-          <div class="movies-column">
-            <div class="section-header">
-              <h3>Movie Suggestions</h3>
-              <button class="btn add-movie" id="suggest-movie-btn">
-                ＋ Suggest Movie
-              </button>
-            </div>
-            <div class="movies-grid">
-              <!-- Movie cards will be injected here -->
-              <!-- Comienza aquí place holder-->
-
-              <!-- Placeholder Movie Cards -->
-              <div class="movie-card placeholder">
-                <div class="poster-loader"></div>
-                <div class="text-loader" style="width: 80%"></div>
-                <div class="text-loader" style="width: 60%"></div>
-              </div>
-
-              <div class="movie-card placeholder">
-                <div class="poster-loader"></div>
-                <div class="text-loader" style="width: 75%"></div>
-                <div class="text-loader" style="width: 50%"></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Comments Column -->
-          <div class="comments-column">
-            <div class="section-header">
-              <h3>Discussion</h3>
-            </div>
-            <div class="comments-list">
-              <!-- Comments will be injected here -->
-              <!-- Placeholder Comments -->
-              <div class="comment placeholder">
-                <div class="avatar-loader"></div>
-                <div class="text-loader" style="width: 90%"></div>
-                <div class="text-loader" style="width: 70%"></div>
-              </div>
-
-              <div class="comment placeholder">
-                <div class="avatar-loader"></div>
-                <div class="text-loader" style="width: 85%"></div>
-                <div class="text-loader" style="width: 65%"></div>
-              </div>
-            </div>
-            <form class="comment-form">
-              <textarea placeholder="Add your comment..."></textarea>
-              <button type="submit" class="btn submit">Post</button>
-            </form>
-          </div>
-        </div>
-      </section>
-      <!--My Events Section-->
-      <section id="my-events-view" class="view">
-        <div class="events-header">
-          <h2>My Movie Nights</h2>
-          <button class="btn new-event-btn" id="new-event-btn">
-            ＋ New Event
-          </button>
-        </div>
-
-        <div class="events-grid">
-          <!-- Event cards will be dynamically inserted here -->
-          <div class="events-grid">
-            <!-- Placeholder Event Cards -->
-            <div class="event-card placeholder">
-              <div class="text-loader" style="width: 70%"></div>
-              <div class="text-loader" style="width: 50%"></div>
-              <div class="participants-loader">
-                <div class="avatar-loader"></div>
-                <div class="avatar-loader"></div>
-                <div class="avatar-loader"></div>
-              </div>
-            </div>
-          </div>
-          <div class="no-events">
-            <img
-              src="assets/images/popcorn.png"
-              alt="No events"
-              class="empty-state"
-            />
-            <p>No events found. Start by creating a new movie night!</p>
-          </div>
-        </div>
-      </section>
-      <!--Movie Details Modal-->
-      <dialog id="movie-dialog" class="movie-modal">
-        <div class="modal-content">
-          <button class="close-btn" aria-label="Close">×</button>
-          <div class="movie-main">
-            <div class="movie-poster">
-              <img src="placeholder.jpg" alt="Movie poster" />
-            </div>
-            <div class="movie-info">
-              <h2 class="movie-title">
-                Movie Title <span class="year">(2025)</span>
-              </h2>
-              <div class="movie-meta">
-                <span class="rating">⭐ 8.5/10</span>
-                <span class="duration">⏳ 2h 15m</span>
-                <span class="genre">🎭 Action, Adventure</span>
-              </div>
-              <p class="movie-plot">Movie plot description goes here...</p>
-              <div class="action-buttons">
-                <button class="btn vote-btn">👍 Vote for this Movie</button>
-                <button class="btn trailer-btn">▶️ Play Trailer</button>
-              </div>
-            </div>
-          </div>
-          <div class="movie-extra">
-            <h3>Cast</h3>
-            <div class="cast-grid">
-              <!-- Cast members -->
-            </div>
-          </div>
-        </div>
-      </dialog>
-      <!--Movies Search Modal-->
-      <dialog id="search-modal" class="search-modal">
-        <div class="search-header">
-          <h3>Search Movies</h3>
-          <div class="search-bar">
-            <input type="text" placeholder="Search movies..." />
-            <button class="search-btn">🔍</button>
-          </div>
-        </div>
-        <div class="search-results">
-          <!-- Results injected here -->
-        </div>
-      </dialog>
-      <!--Surprise me Modal-->
-      <dialog id="surprise-modal" class="surprise-modal">
-        <div class="surprise-content">
-          <h3>Surprise Me!</h3>
-          <form class="surprise-form">
-            <div class="filter-group">
-              <label>Genre</label>
-              <div class="genre-grid">
-                <!-- Genre checkboxes -->
-              </div>
-            </div>
-
-            <div class="filter-group">
-              <label>Release Year</label>
-              <div class="year-range">
-                <input type="range" min="1920" max="2023" value="2020" />
-                <output>2020-2025</output>
-              </div>
-            </div>
-
-            <button type="submit" class="spin-btn">🎰 Spin the Wheel!</button>
-          </form>
-        </div>
-      </dialog>
+        </dialog>
     </main>
 
     <footer class="footer">
-      <div class="footer__content">
-        <p>©2025 Movie Night Mayhem 🍒 Cherry Machado 🍒 Venezuela</p>
-        <img
-          src="./assets/images/Flag_of_Venezuela.png"
-          alt="Venezuela"
-          loading="lazy"
-        />
-      </div>
+        <div class="footer__content">
+            <p>©2025 Movie Night Mayhem 🍒 Cherry Machado 🍒 Venezuela</p>
+            <img src="./assets/images/Flag_of_Venezuela.png" alt="Venezuela" loading="lazy" />
+        </div>
     </footer>
-  </body>
+</body>
+
 </html>
