@@ -1,6 +1,6 @@
 // Import modules
-import { UIModule } from './scripts/ui.js';
-import { EventModule } from './scripts/events.js';
+import { UIModule } from './ui.js';
+import { EventModule } from './events.js';
 
 // Initialize modules
 const ui = new UIModule();
