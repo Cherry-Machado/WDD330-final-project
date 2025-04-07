@@ -22,8 +22,12 @@
       "sourceType": "module"
     },
     "rules": {
-      "no-unused-vars": ["warn"],
-      "no-console": ["warn"]
+      "no-unused-vars": [
+        "warn"
+      ],
+      "no-console": [
+        "warn"
+      ]
     }
   },
   "eslintIgnore": [
@@ -41,6 +45,8 @@
     "eslint": "^9.24.0",
     "prettier": "^3.5.3",
     "vite": "^6.2.0"
+  },
+  "dependencies": {
+    "path": "^0.12.7"
   }
 }
-
