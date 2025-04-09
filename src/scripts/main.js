@@ -1,11 +1,18 @@
 // Import modules
 import { UIModule } from './ui.js';
 import { EventModule } from './events.js';
+import { StorageModule } from './storage.js';
+import { AnimationModule } from './animations.js';
+import { TMDBApi } from './api/tmdb.js';
+import { OMDBApi } from './api/omdb.js';
 
 // Initialize modules
 const ui = new UIModule();
 const events = new EventModule();
+const storage = new StorageModule();
 const animations = new AnimationModule();
+const tmdbApi = new TMDBApi('8ced6a6b9346ec677b79f00b66974bec');
+const omdbApi = new OMDBApi('f3512991');
 
 // App state
 const state = {
@@ -37,6 +44,11 @@ document.addEventListener('DOMContentLoaded', init);
 window.app = {
   ui,
   events,
+  storage,
+  animations,
+  tmdbApi,
+  omdbApi,
+  state,
 };
 
 // Error handling

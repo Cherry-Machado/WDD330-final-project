@@ -338,11 +338,13 @@ textarea {
   gap: 2rem;
 }
 
+/*
 .movies-grid {
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
+*/
 
 .movie-card {
   background: rgba(255, 255, 255, 0.05);
