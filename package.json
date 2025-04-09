@@ -38,8 +38,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint src --fix",
-    "format": "prettier --write src"
+    "lint": "eslint src/scripts/**/*.js",
+    "format": "prettier --write src/**/*.{js,jsx,ts,tsx,json,css,scss,html}"
   },
   "devDependencies": {
     "@eslint/compat": "^1.2.8",
@@ -51,6 +51,7 @@
     "eslint-plugin-prettier": "^5.2.6",
     "globals": "^16.0.0",
     "prettier": "^3.5.3",
+    "terser": "^5.39.0",
     "vite": "^6.2.0"
   },
   "dependencies": {

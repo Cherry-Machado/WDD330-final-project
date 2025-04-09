@@ -31,7 +31,7 @@ export class TMDBApi {
    * @param {string} movieId - TMDb movie ID
    * @returns {Promise<object>} Movie details
    */
-  async getMovieDetails(movieId) {
+  /*async getMovieDetails(movieId) {
     const url = `${this.baseUrl}/movie/${movieId}?api_key=${this.apiKey}&append_to_response=credits,videos`;
     const response = await fetch(url);
 
@@ -40,7 +40,7 @@ export class TMDBApi {
     }
 
     return response.json();
-  }
+  }*/
 
   /**
    * Get popular movies
