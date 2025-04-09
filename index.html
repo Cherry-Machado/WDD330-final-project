@@ -10,6 +10,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Movie Night Mayhem - WDD330 Final Project" />
+  <meta name="author" content="Cherry Machado" />
   <title>Movie Night Mayhem</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
   <link
@@ -18,14 +19,14 @@
   <link rel="stylesheet" href="src/css/styles.css" />
   <link rel="stylesheet" href="src/css/animations.css" />
   <script type="module" src="src/scripts/main.js"></script>
-  <script type="module" src="src/scripts/events.js"></script>
-  <script type="module" src="src/scripts/ui.js"></script>
+  <script type="module" src="src/scripts/modules/events.js"></script>
+  <script type="module" src="src/scripts/modules/ui.js"></script>
   <script type="module" src="src/scripts/api/tmdb.js"></script>
-  <script type="module" src="src/scripts/storage.js"></script>
+  <script type="module" src="src/scripts/modules/storage.js"></script>
   <script type="module" src="src/scripts/api/omdb.js"></script>
-  <script type="module" src="src/scripts/helper.js"></script>
-  <script type="module" src="src/scripts/build.js"></script>
-  <script type="module" src="src/scripts/animations.js"></script>
+  <script type="module" src="src/scripts/utils/helper.js"></script>
+  <script type="module" src="src/scripts/modules/build.js"></script>
+  <script type="module" src="src/scripts/modules/animations.js"></script>
 
 </head>
 
@@ -50,11 +51,12 @@
   </header>
 
   <main class="container">
-    <section id="home-view" class="view">
+
+    <section id="home-view" class="view active">
       <div class="hero">
         <div class="hero-content">
           <h2 class="hero-title">Plan the Perfect Movie Night</h2>
-          <p class="hero-subtitle">Stop the debates - start watching!</p>
+          <p class="hero-subtitle">Stop the debates - start watching movies with friends!</p>
           <div class="cta-container">
             <button class="cta-btn primary" id="create-event-btn">
               <span class="icon">🎬</span>
@@ -72,8 +74,9 @@
         </div>
       </div>
     </section>
+
     <!--Create Event form-->
-    <section id="create-event-view" class="view">
+    <section id="create-event-view" class="view active">
       <div class="form-container">
         <h2 class="form-title">Create New Event</h2>
         <form id="event-form" class="event-form">
@@ -107,8 +110,9 @@
         <div class="movies-grid"></div>
       </div>
     </section>
+
     <!--Event Dasboard-->
-    <section id="event-view" class="view">
+    <section id="event-view" class="view active">
       <header class="event-header">
         <h2 class="event-title">Friday Flick Fest</h2>
         <div class="event-meta">
@@ -172,6 +176,7 @@
         </div>
       </div>
     </section>
+
     <!--My Events Section-->
     <section id="my-events-view" class="view">
       <div class="events-header">
@@ -201,6 +206,7 @@
         </div>
       </div>
     </section>
+
     <!--Movie Details Modal-->
     <dialog id="movie-dialog" class="movie-modal">
       <div class="modal-content">
