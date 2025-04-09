@@ -1,13 +1,18 @@
 /**
  * UI Module - Handles all user interface rendering and updates
  */
+
+import { StorageModule } from './storage.js';
+const storage = new StorageModule();
+
 export class UIModule {
   constructor() {
     this.views = {
       home: document.getElementById('home-view'),
       createEvent: document.getElementById('create-event-view'),
       event: document.getElementById('event-view'),
-      movieDetails: document.getElementById('movie-details-view'),
+      myeventsview: document.getElementById('my-events-view'),
+      //movieDetails: document.getElementById('movie-details-view'),
     };
   }
 
@@ -254,34 +259,43 @@ export class UIModule {
     }
   }
 
+  /**
+   * Fetches movie suggestions for a specific event from local storage
+   * @param {string} eventId - The ID of the event
+   * @returns {Promise<Array>} Array of movie suggestions with vote counts
+   */
   async fetchMovieSuggestions(eventId) {
-    // Mock data - in a real app, this would come from your data source
-    return [
-      {
-        id: 'tt0111161',
-        title: 'The Shawshank Redemption',
-        year: '1994',
-        poster:
-          'https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg',
-        votes: 12,
-      },
-      {
-        id: 'tt0068646',
-        title: 'The Godfather',
-        year: '1972',
-        poster:
-          'https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg',
-        votes: 8,
-      },
-      {
-        id: 'tt0468569',
-        title: 'The Dark Knight',
-        year: '2008',
-        poster:
-          'https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg',
-        votes: 15,
-      },
-    ];
+    try {
+      // Get all events from storage
+      const events = JSON.parse(localStorage.getItem('movieNightEvents')) || [];
+
+      // Find the specific event
+      const event = events.find((e) => e.id === eventId);
+
+      if (!event) {
+        console.warn(`Event with ID ${eventId} not found`);
+        return [];
+      }
+
+      // Return movies with vote counts
+      return event.movies.map((movie) => {
+        // Count votes for this movie
+        const votes = event.votes
+          ? event.votes.filter((v) => v.movieId === movie.id).length
+          : 0;
+
+        return {
+          id: movie.id,
+          title: movie.title,
+          year: movie.year,
+          poster: movie.poster,
+          votes: votes,
+        };
+      });
+    } catch (error) {
+      console.error('Error fetching movie suggestions:', error);
+      return [];
+    }
   }
 
   showNotification(message, type = 'info') {
@@ -317,7 +331,7 @@ export class UIModule {
 
   // In ui.js
   renderMyEventsView() {
-    const events = app.storage.getAllEvents();
+    const events = storage.getAllEvents();
     const container = document.querySelector('.events-grid');
 
     if (events.length === 0) {
@@ -383,10 +397,5 @@ export class UIModule {
     return eventDateTime > now
       ? '<span class="status-badge">Upcoming</span>'
       : '<span class="status-badge ended">Ended</span>';
-  }
-
-  formatEventDate(dateString) {
-    const options = { month: 'short', day: 'numeric' };
-    return new Date(dateString).toLocaleDateString('en-US', options);
   }
 }

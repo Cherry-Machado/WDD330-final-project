@@ -1,8 +1,8 @@
 // Import modules
-import { UIModule } from './ui.js';
-import { EventModule } from './events.js';
-import { StorageModule } from './storage.js';
-import { AnimationModule } from './animations.js';
+import { UIModule } from './modules/ui.js';
+import { EventModule } from './modules/events.js';
+import { StorageModule } from './modules/storage.js';
+import { AnimationModule } from './modules/animations.js';
 import { TMDBApi } from './api/tmdb.js';
 import { OMDBApi } from './api/omdb.js';
 
@@ -23,6 +23,18 @@ const state = {
     recentlyViewed: [],
   },
 };
+
+// Export modules and state for debugging
+window.app = {
+  ui,
+  events,
+  storage,
+  animations,
+  tmdbApi,
+  omdbApi,
+  state,
+};
+
 // Initialize the app
 function init() {
   // Set up event listeners
@@ -40,16 +52,7 @@ function init() {
 // Start the app when DOM is loaded
 document.addEventListener('DOMContentLoaded', init);
 
-// Export modules and state for debugging
-window.app = {
-  ui,
-  events,
-  storage,
-  animations,
-  tmdbApi,
-  omdbApi,
-  state,
-};
+// Handle theme toggle
 
 // Error handling
 window.addEventListener('error', (event) => {
