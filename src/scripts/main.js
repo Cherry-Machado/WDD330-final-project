@@ -37,6 +37,8 @@ window.app = {
   state,
 };
 
+/*
+// Test API calls
 async function testAPIs() {
   try {
     const tmdbMovies = await tmdbApi.searchMovies('Inception');
@@ -50,41 +52,8 @@ async function testAPIs() {
 }
 
 testAPIs();
-/*
-const tmdbBaseUrl = 'https://api.themoviedb.org/3';
-
-async function fetchMovieDetails(movieId) {
-  try {
-    const response = await fetch(
-      `${tmdbBaseUrl}/movie/${movieId}?api_key=${tmdbApiKey}&language=en-US`,
-    );
-    const data = await response.json();
-    console.log('TMDb Movie Data:', data);
-  } catch (error) {
-    console.error('Error fetching TMDb movie data:', error);
-  }
-}
-
-const omdbBaseUrl = 'https://www.omdbapi.com/';
-
-async function fetchOmdbMovie(title) {
-  try {
-    const response = await fetch(
-      `${omdbBaseUrl}?t=${encodeURIComponent(title)}&apikey=${omdbApiKey}`,
-    );
-    const data = await response.json();
-    console.log('OMDb Movie Data:', data);
-  } catch (error) {
-    console.error('Error fetching OMDb movie data:', error);
-  }
-}
-
-// Pruebas:
-fetchMovieDetails(27205); // Reemplaza con el ID de la película (ejemplo: "Inception" - ID 27205).
-fetchOmdbMovie('Inception'); // Busca por título en OMDb.
-
-alert('Prueba de alerta'); // Prueba de alerta
 */
+
 // Initialize the app
 function init() {
   // Set up event listeners
