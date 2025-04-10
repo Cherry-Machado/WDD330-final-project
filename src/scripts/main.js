@@ -11,10 +11,10 @@ const ui = new UIModule();
 const events = new EventModule();
 const storage = new StorageModule();
 const animations = new AnimationModule();
-const tmdbApiKey = import.meta.env.VITE_TMDB_API_KEY;
-const omdbApiKey = 'f3512991'; //import.meta.env.VITE_OMDB_API_KEY;
+/*const tmdbApiKey = import.meta.env.VITE_TMDB_API_KEY;
+const omdbApiKey = import.meta.env.VITE_OMDB_API_KEY;
 const tmdbApi = new TMDBApi(tmdbApiKey);
-const omdbApi = new OMDBApi(omdbApiKey);
+const omdbApi = new OMDBApi(omdbApiKey);*/
 
 // App state
 const state = {
@@ -37,6 +37,26 @@ window.app = {
   state,
 };
 
+const tmdbApiKey = import.meta.env.VITE_TMDB_API_KEY;
+const omdbApiKey = import.meta.env.VITE_OMDB_API_KEY;
+
+const tmdbApi = new TMDBApi(tmdbApiKey);
+const omdbApi = new OMDBApi(omdbApiKey);
+
+async function testAPIs() {
+  try {
+    const tmdbMovies = await tmdbApi.searchMovies('Inception');
+    console.log('TMDb Movies:', tmdbMovies);
+
+    const omdbMovie = await omdbApi.getMovieDetails('tt1375666'); // Ejemplo de ID de IMDb
+    console.log('OMDb Movie Details:', omdbMovie);
+  } catch (error) {
+    console.error('Error testing APIs:', error);
+  }
+}
+
+testAPIs();
+/*
 const tmdbBaseUrl = 'https://api.themoviedb.org/3';
 
 async function fetchMovieDetails(movieId) {
@@ -70,7 +90,7 @@ fetchMovieDetails(27205); // Reemplaza con el ID de la película (ejemplo: "Ince
 fetchOmdbMovie('Inception'); // Busca por título en OMDb.
 
 alert('Prueba de alerta'); // Prueba de alerta
-
+*/
 // Initialize the app
 function init() {
   // Set up event listeners
