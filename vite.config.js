@@ -11,6 +11,7 @@ export default defineConfig(({ mode }) => {
     root: resolve(__dirname, './'),
     publicDir: resolve(__dirname, './public'),
     build: {
+      minify: false,
       outDir: resolve(__dirname, './dist'),
       emptyOutDir: true,
       rollupOptions: {
