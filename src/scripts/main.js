@@ -11,8 +11,10 @@ const ui = new UIModule();
 const events = new EventModule();
 const storage = new StorageModule();
 const animations = new AnimationModule();
-const tmdbApi = new TMDBApi('8ced6a6b9346ec677b79f00b66974bec');
-const omdbApi = new OMDBApi('f3512991');
+const tmdbApiKey = import.meta.env.VITE_TMDB_API_KEY;
+const omdbApiKey = import.meta.env.VITE_OMDB_API_KEY;
+const tmdbApi = new TMDBApi(tmdbApiKey);
+const omdbApi = new OMDBApi(omdbApiKey);
 
 // App state
 const state = {

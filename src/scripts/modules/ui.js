@@ -11,8 +11,8 @@ export class UIModule {
       home: document.getElementById('home-view'),
       createEvent: document.getElementById('create-event-view'),
       event: document.getElementById('event-view'),
+      movieDetails: document.getElementById('movie-details-view'),
       myeventsview: document.getElementById('my-events-view'),
-      //movieDetails: document.getElementById('movie-details-view'),
     };
   }
 
