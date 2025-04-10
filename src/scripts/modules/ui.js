@@ -59,17 +59,50 @@ export class UIModule {
 
     // Crear y agregar tarjetas de eventos
     events.forEach((event) => {
-      const eventCard = document.createElement('div');
-      eventCard.classList.add('event-card');
-      eventCard.innerHTML = `
-        <h3>${event.title}</h3>
-        <p>${event.description}</p>
-        <div class="participants">
-          ${event.participants.map((p) => `<span>${p}</span>`).join('')}
-        </div>
-      `;
+      const eventCard = this.generateEventCard(event);
       eventsGrid.appendChild(eventCard);
     });
+  }
+
+  // Función modular para generar tarjetas de eventos
+  generateEventCard(event) {
+    const eventCard = document.createElement('article');
+    eventCard.classList.add('event-card');
+    eventCard.setAttribute('data-event-id', event.id);
+
+    eventCard.innerHTML = `
+      ${this.getStatusBadge(event.date, event.time)}
+      <div class="event-card-header">
+        <h3 class="event-title">${event.name}</h3>
+        <div class="event-meta">
+          <span>🗓 ${this.formatEventDate(event.date)}</span>
+          <span>⏰ ${event.time}</span>
+        </div>
+      </div>
+      <div class="event-details">
+        <div class="detail-item">
+          <svg class="detail-icon" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+          </svg>
+          <span>${event.participants.length} participants</span>
+        </div>
+        <div class="detail-item">
+          <svg class="detail-icon" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M5,20V8L12,13L19,8V20H5M12,11L5,6H19L12,11Z"/>
+          </svg>
+          <span>${event.movies.length} suggestions</span>
+        </div>
+      </div>
+      <div class="event-actions">
+        <button class="btn btn-sm view-event" data-event-id="${event.id}">
+          View Event
+        </button>
+        <button class="btn btn-sm delete-event" data-event-id="${event.id}">
+          Delete
+        </button>
+      </div>
+    `;
+    return eventCard;
   }
 
   renderView(viewName, data) {
@@ -379,48 +412,41 @@ export class UIModule {
     container.innerHTML = events
       .map(
         (event) => `
-        <article class="event-card" data-event-id="${event.id}">
-          ${this.getStatusBadge(event.date)}
-          <div class="event-card-header">
-            <h3 class="event-title">${event.name}</h3>
-            <div class="event-meta">
-              <span>🗓 ${this.formatEventDate(event.date)}</span>
-              <span>⏰ ${event.time}</span>
-            </div>
-          </div>
-          <div class="event-details">
-            <div class="detail-item">
-              <svg class="detail-icon" viewBox="0 0 24 24">
-                <path fill="currentColor" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
-              </svg>
-              <span>${event.participants.length} participants</span>
-            </div>
-            <div class="detail-item">
-              <svg class="detail-icon" viewBox="0 0 24 24">
-                <path fill="currentColor" d="M5,20V8L12,13L19,8V20H5M12,11L5,6H19L12,11Z" />
-              </svg>
-              <span>${event.movies.length} suggestions</span>
-            </div>
-          </div>
-          <div class="event-actions">
-            <button class="btn btn-sm view-event" data-event-id="${event.id}">
-              View Event
-            </button>
-            <button class="btn btn-sm delete-event" data-event-id="${event.id}">
-              Delete
-            </button>
-          </div>
-        </article>
-      `,
+      <article class="event-card" data-event-id="${event.id}">
+        <h3 class="event-title">${event.name}</h3>
+        <div class="event-actions">
+          <button class="btn btn-sm view-event" data-event-id="${event.id}">
+            View Event
+          </button>
+          <button class="btn btn-sm delete-event" data-event-id="${event.id}">
+            Delete
+          </button>
+        </div>
+      </article>
+    `,
       )
       .join('');
   }
 
-  getStatusBadge(eventDate) {
-    const now = new Date();
-    const eventDateTime = new Date(`${eventDate}T${event.time}`);
-    return eventDateTime > now
-      ? '<span class="status-badge">Upcoming</span>'
-      : '<span class="status-badge ended">Ended</span>';
+  getStatusBadge(eventDate, eventTime) {
+    const now = new Date(); // Fecha y hora actual
+    const eventDateTime = new Date(`${eventDate}T${eventTime}`); // Combina fecha y hora del evento
+
+    if (isNaN(eventDateTime)) {
+      return '<span class="status-badge error">Invalid date/time</span>';
+    }
+
+    if (eventDateTime > now) {
+      return '<span class="status-badge">Upcoming</span>';
+    }
+
+    if (
+      eventDateTime <= now &&
+      eventDateTime > new Date(now.getTime() - 2 * 60 * 60 * 1000)
+    ) {
+      return '<span class="status-badge progress">In Progress</span>';
+    }
+
+    return '<span class="status-badge ended">Ended</span>';
   }
 }

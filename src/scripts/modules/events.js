@@ -32,13 +32,31 @@ export class EventModule {
   }
 
   setupEventListeners() {
-    // Interceptar clicks en los enlaces de navegación
+    // Interceptar clics en los enlaces de navegación
     document.querySelectorAll('.nav-link').forEach((link) => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
         const targetId = link.getAttribute('href');
         this.scrollToSection(targetId);
       });
+    });
+
+    // Manejar clics en los botones "View Event" y "Delete Event"
+    document.addEventListener('click', (event) => {
+      const viewButton = event.target.closest('.view-event');
+      const deleteButton = event.target.closest('.delete-event');
+
+      if (viewButton) {
+        const eventId = viewButton.getAttribute('data-event-id');
+        console.log(`Viewing event with ID: ${eventId}`);
+        // Aquí puedes manejar la lógica para mostrar los detalles del evento
+      }
+
+      if (deleteButton) {
+        const eventId = deleteButton.getAttribute('data-event-id');
+        console.log(`Deleting event with ID: ${eventId}`);
+        // Aquí puedes manejar la lógica para eliminar el evento
+      }
     });
   }
 
