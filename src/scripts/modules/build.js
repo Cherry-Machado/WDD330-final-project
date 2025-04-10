@@ -1,5 +1,5 @@
 import { minify } from 'terser';
-
+/*
 async function minifyFiles() {
   // List of JS files to minify (must be accessible via URL if running in browser)
   const files = [
@@ -41,8 +41,7 @@ async function minifyFiles() {
 if (typeof window !== 'undefined') {
   minifyFiles();
 }
-
-/*import { minify } from 'terser';
+*/
 import { readFileSync, writeFileSync } from 'fs';
 
 async function minifyFiles() {
@@ -60,4 +59,3 @@ async function minifyFiles() {
 }
 
 minifyFiles();
-*/
