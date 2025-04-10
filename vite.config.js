@@ -4,8 +4,7 @@ import { resolve } from 'path';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
-
-  console.log('TMDB_API_KEY:', env.VITE_TMDB_API_KEY); // Solo para verificar que funciona
+  console.log('Hour CMDER-1:', env.CMDER_INIT_START);
 
   return {
     root: resolve(__dirname, './'),
