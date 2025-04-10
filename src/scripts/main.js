@@ -26,12 +26,6 @@ const state = {
   },
 };
 
-// Pruebas:
-fetchMovieDetails(27205); // Reemplaza con el ID de la película (ejemplo: "Inception" - ID 27205).
-fetchOmdbMovie('Inception'); // Busca por título en OMDb.
-
-alert('Prueba de alerta'); // Prueba de alerta
-
 // Export modules and state for debugging
 window.app = {
   ui,
@@ -70,6 +64,12 @@ async function fetchOmdbMovie(title) {
     console.error('Error fetching OMDb movie data:', error);
   }
 }
+
+// Pruebas:
+fetchMovieDetails(27205); // Reemplaza con el ID de la película (ejemplo: "Inception" - ID 27205).
+fetchOmdbMovie('Inception'); // Busca por título en OMDb.
+
+alert('Prueba de alerta'); // Prueba de alerta
 
 // Initialize the app
 function init() {
