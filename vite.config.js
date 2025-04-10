@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/namespace
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
 
@@ -19,4 +20,4 @@ export default defineConfig({
     open: true,
   },
 });
-// import { defineConfig } from 'vite';
+//
