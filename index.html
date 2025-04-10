@@ -1,131 +1,112 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta
-      property="og:title"
-      content="Movie Night Mayhem - WDD330 Final Project"
-    />
-    <meta
-      property="og:description"
-      content="Collaborative movie selection tool for groups with voting and scheduling features"
-    />
-    <meta property="og:image" content="assets/images/Flag_of_Venezuela.png" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Movie Night Mayhem - WDD330 Final Project"
-    />
-    <meta name="author" content="Cherry Machado" />
-    <title>Movie Night Mayhem</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Merriweather:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="src/css/styles.css" />
-    <link rel="stylesheet" href="src/css/animations.css" />
-    <script type="module" src="src/scripts/main.js"></script>
-    <script type="module" src="src/scripts/modules/events.js"></script>
-    <script type="module" src="src/scripts/modules/ui.js"></script>
-    <script type="module" src="src/scripts/api/tmdb.js"></script>
-    <script type="module" src="src/scripts/modules/storage.js"></script>
-    <script type="module" src="src/scripts/api/omdb.js"></script>
-    <script type="module" src="src/scripts/utils/helper.js"></script>
-    <script type="module" src="src/scripts/modules/build.js"></script>
-    <script type="module" src="src/scripts/modules/animations.js"></script>
-  </head>
 
-  <body>
-    <header class="main-header">
-      <div class="container">
-        <h1 class="logo">Movie Night Mayhem</h1>
-        <nav class="main-nav">
-          <button id="menu-toggle" aria-label="Toggle navigation menu">
-            ☰
+<head>
+  <meta property="og:title" content="Movie Night Mayhem - WDD330 Final Project" />
+  <meta property="og:description"
+    content="Collaborative movie selection tool for groups with voting and scheduling features" />
+  <meta property="og:image" content="assets/images/Flag_of_Venezuela.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Movie Night Mayhem - WDD330 Final Project" />
+  <meta name="author" content="Cherry Machado" />
+  <title>Movie Night Mayhem</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Merriweather:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="src/css/styles.css" />
+  <link rel="stylesheet" href="src/css/animations.css" />
+  <script type="module" src="src/scripts/main.js"></script>
+  <script type="module" src="src/scripts/modules/events.js"></script>
+  <script type="module" src="src/scripts/modules/ui.js"></script>
+  <script type="module" src="src/scripts/api/tmdb.js"></script>
+  <script type="module" src="src/scripts/modules/storage.js"></script>
+  <script type="module" src="src/scripts/api/omdb.js"></script>
+  <script type="module" src="src/scripts/utils/helper.js"></script>
+  <script type="module" src="src/scripts/modules/animations.js"></script>
+</head>
+
+<body>
+  <header class="main-header">
+    <div class="container">
+      <h1 class="logo">Movie Night Mayhem</h1>
+      <nav class="main-nav">
+        <button id="menu-toggle" aria-label="Toggle navigation menu">
+          ☰
+        </button>
+        <ul id="nav-menu">
+          <li><a href="#home-view" class="nav-link">Home</a></li>
+          <li>
+            <a href="#create-event-view" class="nav-link">Create Event</a>
+          </li>
+          <li><a href="#event-view" class="nav-link">Join Event</a></li>
+          <li><a href="#my-events-view" class="nav-link">My Events</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    <section id="home-view" class="view active">
+      <div class="hero">
+        <h2>Plan the Perfect Movie Night</h2>
+        <p>
+          Stop the endless debates and start watching movies with friends!
+        </p>
+        <div class="cta-buttons">
+          <button id="create-event-btn" class="btn btn-primary">
+            Create Event
           </button>
-          <ul id="nav-menu">
-            <li><a href="#home-view" class="nav-link">Home</a></li>
-            <li>
-              <a href="#create-event-view" class="nav-link">Create Event</a>
-            </li>
-            <li><a href="#event-view" class="nav-link">Join Event</a></li>
-            <li><a href="#my-events-view" class="nav-link">My Events</a></li>
-          </ul>
-        </nav>
+          <button id="join-event-btn" class="btn btn-secondary">
+            Join Event
+          </button>
+        </div>
       </div>
-    </header>
-    <main class="container">
-      <section id="home-view" class="view active">
-        <div class="hero">
-          <h2>Plan the Perfect Movie Night</h2>
-          <p>
-            Stop the endless debates and start watching movies with friends!
-          </p>
-          <div class="cta-buttons">
-            <button id="create-event-btn" class="btn btn-primary">
-              Create Event
-            </button>
-            <button id="join-event-btn" class="btn btn-secondary">
-              Join Event
-            </button>
-          </div>
-        </div>
-      </section>
+    </section>
 
-      <section id="create-event-view" class="view"></section>
+    <section id="create-event-view" class="view"></section>
 
-      <section id="event-view" class="view"></section>
+    <section id="event-view" class="view"></section>
 
-      <section id="movie-details-view" class="view"></section>
+    <section id="movie-details-view" class="view"></section>
 
-      <!--My Events Section-->
-      <section id="my-events-view" class="view">
-        <div class="events-header">
-          <h2>My Movie Nights</h2>
-          <button class="btn new-event-btn" id="new-event-btn">
-            ＋ New Event
-          </button>
-        </div>
+    <!--My Events Section-->
+    <section id="my-events-view" class="view">
+      <div class="events-header">
+        <h2>My Movie Nights</h2>
+        <button class="btn new-event-btn" id="new-event-btn">
+          ＋ New Event
+        </button>
+      </div>
 
+      <div class="events-grid">
+        <!-- Event cards will be dynamically inserted here -->
         <div class="events-grid">
-          <!-- Event cards will be dynamically inserted here -->
-          <div class="events-grid">
-            <!-- Placeholder Event Cards -->
-            <div class="event-card placeholder">
-              <div class="text-loader" style="width: 70%"></div>
-              <div class="text-loader" style="width: 50%"></div>
-              <div class="participants-loader">
-                <div class="avatar-loader"></div>
-                <div class="avatar-loader"></div>
-                <div class="avatar-loader"></div>
-              </div>
+          <!-- Placeholder Event Cards -->
+          <div class="event-card placeholder">
+            <div class="text-loader" style="width: 70%"></div>
+            <div class="text-loader" style="width: 50%"></div>
+            <div class="participants-loader">
+              <div class="avatar-loader"></div>
+              <div class="avatar-loader"></div>
+              <div class="avatar-loader"></div>
             </div>
           </div>
-          <div class="no-events">
-            <img
-              src="assets/images/popcorn.png"
-              alt="No events"
-              class="empty-state"
-            />
-            <p>No events found. Start by creating a new movie night!</p>
-          </div>
         </div>
-      </section>
-    </main>
-    <footer class="footer">
-      <div class="footer__content">
-        <p>©2025 Movie Night Mayhem 🍒 Cherry Machado 🍒 Venezuela</p>
-        <img
-          src="./assets/images/Flag_of_Venezuela.png"
-          alt="Venezuela"
-          loading="lazy"
-        />
+        <div class="no-events">
+          <img src="assets/images/popcorn.png" alt="No events" class="empty-state" />
+          <p>No events found. Start by creating a new movie night!</p>
+        </div>
       </div>
-    </footer>
-  </body>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="footer__content">
+      <p>©2025 Movie Night Mayhem 🍒 Cherry Machado 🍒 Venezuela</p>
+      <img src="./assets/images/Flag_of_Venezuela.png" alt="Venezuela" loading="lazy" />
+    </div>
+  </footer>
+</body>
+
 </html>

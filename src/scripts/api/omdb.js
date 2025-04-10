@@ -1,4 +1,4 @@
-class OMDBApi {
+export class OMDBApi {
   constructor(apiKey) {
     this.apiKey = apiKey;
     this.baseUrl = 'https://www.omdbapi.com';
@@ -63,4 +63,3 @@ class OMDBApi {
   }
 }
 // Export the OMDBApi class
-export default OMDBApi;

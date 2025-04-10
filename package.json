@@ -55,8 +55,7 @@
     "globals": "^16.0.0",
     "prettier": "^3.5.3",
     "terser": "^5.39.0",
-    "vite": "^6.2.5",
-    "husky": "^8.0.0"
+    "vite": "^6.2.5"
   },
   "dependencies": {
     "path": "^0.12.7"
