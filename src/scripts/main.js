@@ -16,9 +16,6 @@ const omdbApiKey = import.meta.env.VITE_OMDB_API_KEY;
 const tmdbApi = new TMDBApi(tmdbApiKey);
 const omdbApi = new OMDBApi(omdbApiKey);
 
-console.log(import.meta.env.VITE_TMDB_API_KEY);
-console.log(import.meta.env.VITE_OMDB_API_KEY);
-
 // App state
 const state = {
   currentView: 'home',
@@ -28,6 +25,12 @@ const state = {
     recentlyViewed: [],
   },
 };
+
+// Pruebas:
+fetchMovieDetails(27205); // Reemplaza con el ID de la película (ejemplo: "Inception" - ID 27205).
+fetchOmdbMovie('Inception'); // Busca por título en OMDb.
+
+alert('Prueba de alerta'); // Prueba de alerta
 
 // Export modules and state for debugging
 window.app = {
@@ -67,12 +70,6 @@ async function fetchOmdbMovie(title) {
     console.error('Error fetching OMDb movie data:', error);
   }
 }
-
-// Pruebas:
-fetchMovieDetails(27205); // Reemplaza con el ID de la película (ejemplo: "Inception" - ID 27205).
-fetchOmdbMovie('Inception'); // Busca por título en OMDb.
-
-alert('Prueba de alerta'); // Prueba de alerta
 
 // Initialize the app
 function init() {

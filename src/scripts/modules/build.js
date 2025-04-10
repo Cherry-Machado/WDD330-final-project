@@ -3,7 +3,7 @@ import { minify } from 'terser';
 async function minifyFiles() {
   // List of JS files to minify (must be accessible via URL if running in browser)
   const files = [
-    './scripts/main.js',
+    '../main.js',
     // Add other JS file paths (must be relative to the HTML file or a full URL)
   ];
 
