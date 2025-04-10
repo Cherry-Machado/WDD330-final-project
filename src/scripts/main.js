@@ -12,7 +12,7 @@ const events = new EventModule();
 const storage = new StorageModule();
 const animations = new AnimationModule();
 const tmdbApiKey = import.meta.env.VITE_TMDB_API_KEY;
-const omdbApiKey = import.meta.env.VITE_OMDB_API_KEY;
+const omdbApiKey = 'f3512991'; //import.meta.env.VITE_OMDB_API_KEY;
 const tmdbApi = new TMDBApi(tmdbApiKey);
 const omdbApi = new OMDBApi(omdbApiKey);
 
