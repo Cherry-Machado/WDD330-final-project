@@ -7,6 +7,15 @@ import { StorageModule } from './storage.js';
 import { TMDBApi } from '../api/tmdb.js';
 import { OMDBApi } from '../api/omdb.js';
 
+// Initialize modules
+const ui = new UIModule();
+const storage = new StorageModule();
+const tmdbApiKey = import.meta.env.VITE_TMDB_API_KEY;
+const omdbApiKey = import.meta.env.VITE_OMDB_API_KEY;
+
+const tmdbApi = new TMDBApi(tmdbApiKey);
+const omdbApi = new OMDBApi(omdbApiKey);
+
 // App state
 const state = {
   currentView: 'home',
@@ -16,12 +25,6 @@ const state = {
     recentlyViewed: [],
   },
 };
-
-// Initialize modules
-const ui = new UIModule();
-const storage = new StorageModule();
-const tmdbApi = new TMDBApi('8ced6a6b9346ec677b79f00b66974bec');
-const omdbApi = new OMDBApi('f3512991');
 
 export class EventModule {
   constructor() {
