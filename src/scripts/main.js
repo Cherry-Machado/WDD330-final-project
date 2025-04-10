@@ -6,6 +6,8 @@ import { AnimationModule } from './modules/animations.js';
 import { TMDBApi } from './api/tmdb.js';
 import { OMDBApi } from './api/omdb.js';
 
+console.log(import.meta.env.VITE_TMDB_API_KEY);
+
 // Initialize modules
 const ui = new UIModule();
 const events = new EventModule();
