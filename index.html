@@ -19,13 +19,6 @@
   <link rel="stylesheet" href="src/css/styles.css" />
   <link rel="stylesheet" href="src/css/animations.css" />
   <script type="module" src="src/scripts/main.js"></script>
-  <script type="module" src="src/scripts/modules/events.js"></script>
-  <script type="module" src="src/scripts/modules/ui.js"></script>
-  <script type="module" src="src/scripts/api/tmdb.js"></script>
-  <script type="module" src="src/scripts/modules/storage.js"></script>
-  <script type="module" src="src/scripts/api/omdb.js"></script>
-  <script type="module" src="src/scripts/utils/helper.js"></script>
-  <script type="module" src="src/scripts/modules/animations.js"></script>
 </head>
 
 <body>
@@ -80,25 +73,14 @@
         </button>
       </div>
 
-      <div class="events-grid">
-        <!-- Event cards will be dynamically inserted here -->
-        <div class="events-grid">
-          <!-- Placeholder Event Cards -->
-          <div class="event-card placeholder">
-            <div class="text-loader" style="width: 70%"></div>
-            <div class="text-loader" style="width: 50%"></div>
-            <div class="participants-loader">
-              <div class="avatar-loader"></div>
-              <div class="avatar-loader"></div>
-              <div class="avatar-loader"></div>
-            </div>
-          </div>
-        </div>
+      
+        <div class="events-grid"></div>
+
         <div class="no-events">
           <img src="assets/images/popcorn.png" alt="No events" class="empty-state" />
           <p>No events found. Start by creating a new movie night!</p>
         </div>
-      </div>
+      
     </section>
   </main>
   <footer class="footer">

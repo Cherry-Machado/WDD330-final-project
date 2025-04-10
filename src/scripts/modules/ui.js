@@ -40,6 +40,38 @@ export class UIModule {
    * @param {string} viewName - The name of the view to render
    * @param {object} data - Data needed to render the view
    */
+
+  renderEventCards(events) {
+    const eventsGrid = document.querySelector('#my-events-view .events-grid');
+    const noEventsDiv = document.querySelector('#my-events-view .no-events');
+
+    // Limpia el contenedor de eventos
+    eventsGrid.innerHTML = '';
+
+    if (events.length === 0) {
+      // Mostrar mensaje de "No events found"
+      noEventsDiv.style.display = 'block';
+      return;
+    }
+
+    // Ocultar el mensaje de "No events found"
+    noEventsDiv.style.display = 'none';
+
+    // Crear y agregar tarjetas de eventos
+    events.forEach((event) => {
+      const eventCard = document.createElement('div');
+      eventCard.classList.add('event-card');
+      eventCard.innerHTML = `
+        <h3>${event.title}</h3>
+        <p>${event.description}</p>
+        <div class="participants">
+          ${event.participants.map((p) => `<span>${p}</span>`).join('')}
+        </div>
+      `;
+      eventsGrid.appendChild(eventCard);
+    });
+  }
+
   renderView(viewName, data) {
     switch (viewName) {
       case 'home':
@@ -333,60 +365,53 @@ export class UIModule {
   renderMyEventsView() {
     const events = storage.getAllEvents();
     const container = document.querySelector('.events-grid');
+    const noEventsDiv = document.querySelector('.no-events'); // Selecciona el div existente
 
+    // Mostrar u ocultar "no-events"
     if (events.length === 0) {
-      container.innerHTML = `
-                <div class="no-events">
-                    <img src="assets/images/popcorn.png" alt="No events" class="empty-state">
-                    <p>No events found. Start by creating a new movie night!</p>
-                </div>
-            `;
+      noEventsDiv.style.display = 'block';
+      container.innerHTML = ''; // Asegúrate de limpiar la vista anterior
       return;
     }
+
+    noEventsDiv.style.display = 'none'; // Oculta el estado vacío cuando hay eventos
 
     container.innerHTML = events
       .map(
         (event) => `
-            <article class="event-card" data-event-id="${event.id}">
-                ${this.getStatusBadge(event.date)}
-                <div class="event-card-header">
-                    <h3 class="event-title">${event.name}</h3>
-                    <div class="event-meta">
-                        <span>🗓 ${this.formatEventDate(event.date)}</span>
-                        <span>⏰ ${event.time}</span>
-                    </div>
-                </div>
-                
-                <div class="event-details">
-                    <div class="detail-item">
-                        <svg class="detail-icon" viewBox="0 0 24 24">
-                            <path fill="currentColor" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
-                        </svg>
-                        <span>${event.participants.length} participants</span>
-                    </div>
-                    
-                    <div class="detail-item">
-                        <svg class="detail-icon" viewBox="0 0 24 24">
-                            <path fill="currentColor" d="M5,20V8L12,13L19,8V20H5M12,11L5,6H19L12,11Z"/>
-                        </svg>
-                        <span>${event.movies.length} suggestions</span>
-                    </div>
-                </div>
-                
-                <div class="event-actions">
-                    <button class="btn btn-sm view-event" data-event-id="${
-                      event.id
-                    }">
-                        View Event
-                    </button>
-                    <button class="btn btn-sm delete-event" data-event-id="${
-                      event.id
-                    }">
-                        Delete
-                    </button>
-                </div>
-            </article>
-        `,
+        <article class="event-card" data-event-id="${event.id}">
+          ${this.getStatusBadge(event.date)}
+          <div class="event-card-header">
+            <h3 class="event-title">${event.name}</h3>
+            <div class="event-meta">
+              <span>🗓 ${this.formatEventDate(event.date)}</span>
+              <span>⏰ ${event.time}</span>
+            </div>
+          </div>
+          <div class="event-details">
+            <div class="detail-item">
+              <svg class="detail-icon" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+              </svg>
+              <span>${event.participants.length} participants</span>
+            </div>
+            <div class="detail-item">
+              <svg class="detail-icon" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M5,20V8L12,13L19,8V20H5M12,11L5,6H19L12,11Z" />
+              </svg>
+              <span>${event.movies.length} suggestions</span>
+            </div>
+          </div>
+          <div class="event-actions">
+            <button class="btn btn-sm view-event" data-event-id="${event.id}">
+              View Event
+            </button>
+            <button class="btn btn-sm delete-event" data-event-id="${event.id}">
+              Delete
+            </button>
+          </div>
+        </article>
+      `,
       )
       .join('');
   }
