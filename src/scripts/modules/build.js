@@ -1,7 +1,11 @@
 import { minify } from 'terser';
 
 async function minifyFiles() {
-  const files = ['scripts/main.js', 'scripts/api/tmdb.js', 'scripts/api/omdb.js'];
+  const files = [
+    'scripts/main.js',
+    'scripts/api/tmdb.js',
+    'scripts/api/omdb.js',
+  ];
 
   for (const file of files) {
     try {
