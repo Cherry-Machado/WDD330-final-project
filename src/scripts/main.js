@@ -15,7 +15,8 @@ const tmdbApiKey = import.meta.env.VITE_TMDB_API_KEY;
 const omdbApiKey = import.meta.env.VITE_OMDB_API_KEY;
 const tmdbApi = new TMDBApi(tmdbApiKey);
 const omdbApi = new OMDBApi(omdbApiKey);
-console.log(tmdbApiKey);
+console.log(import.meta.env.VITE_TMDB_API_KEY);
+console.log(import.meta.env.VITE_OMDB_API_KEY);
 
 // App state
 const state = {
