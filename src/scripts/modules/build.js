@@ -1,4 +1,50 @@
 import { minify } from 'terser';
+
+async function minifyFiles() {
+  const files = ['scripts/main.js', 'scripts/api/tmdb.js', 'scripts/api/omdb.js'];
+
+  for (const file of files) {
+    try {
+      const response = await fetch(file);
+      const code = await response.text();
+      const result = await minify(code, {
+        module: true,
+        compress: true,
+        mangle: true,
+      });
+      console.log(`Minified code for ${file}:`, result.code);
+      // Use result.code as needed, e.g., save it dynamically if possible
+    } catch (error) {
+      console.error(`Error minifying ${file}:`, error);
+    }
+  }
+}
+
+minifyFiles();
+
+/*import { minify } from 'terser';
+import { readFileSync, writeFileSync } from 'fs';
+
+async function minifyFiles() {
+  const files = ['scripts/main.js', 'scripts/*.js', 'scripts/api/*.js'];
+
+  for (const file of files) {
+    const code = readFileSync(file, 'utf8');
+    try {
+      const result = await minify(code, {
+        module: true,
+        compress: true,
+        mangle: true,
+      });
+      writeFileSync(file.replace('.js', '.min.js'), result.code);
+    } catch (error) {
+      console.error(`Error minifying ${file}:`, error);
+    }
+  }
+}
+
+minifyFiles();
+*/
 /*
 async function minifyFiles() {
   // List of JS files to minify (must be accessible via URL if running in browser)
@@ -42,20 +88,3 @@ if (typeof window !== 'undefined') {
   minifyFiles();
 }
 */
-import { readFileSync, writeFileSync } from 'fs';
-
-async function minifyFiles() {
-  const files = ['scripts/main.js', 'scripts/*.js', 'scripts/api/*.js'];
-
-  for (const file of files) {
-    const code = readFileSync(file, 'utf8');
-    const result = await minify(code, {
-      module: true,
-      compress: true,
-      mangle: true,
-    });
-    writeFileSync(file.replace('.js', '.min.js'), result.code);
-  }
-}
-
-minifyFiles();
