@@ -52,21 +52,52 @@ export class EventModule {
       ui.renderView('event-view');
     });
 
+    document
+      .getElementById('suggest-movie-btn')
+      .addEventListener('click', () => {
+        document.getElementById('search-modal').showModal(); // Abrir modal de búsqueda
+      });
+
+    document.querySelectorAll('.close-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        btn.closest('dialog').close();
+      });
+    });
+
     // Manejar clics en los botones "View Event" y "Delete Event"
     document.addEventListener('click', (event) => {
       const viewButton = event.target.closest('.view-event');
       const deleteButton = event.target.closest('.delete-event');
 
       if (viewButton) {
-        const eventId = viewButton.getAttribute('data-event-id');
-        console.log(`Viewing event with ID: ${eventId}`);
-        // Aquí puedes manejar la lógica para mostrar los detalles del evento
-      }
+        const eventId = viewButton.getAttribute('data-event-id'); // Obtener el ID del evento desde el botón
+        const selectedEvent = storage.getEventById(eventId); // Recuperar el evento desde el almacenamiento local
 
-      if (deleteButton) {
-        const eventId = deleteButton.getAttribute('data-event-id');
-        console.log(`Deleting event with ID: ${eventId}`);
-        // Aquí puedes manejar la lógica para eliminar el evento
+        if (!selectedEvent) {
+          ui.showNotification('Event not found.', 'error'); // Notificación si el evento no existe
+          return;
+        }
+
+        // Renderizar el dashboard del evento
+        ui.renderEventDashboard(selectedEvent);
+
+        // Cambiar la vista actual al dashboard
+        ui.renderView('event-view');
+
+        if (deleteButton) {
+          const eventId = deleteButton.getAttribute('data-event-id');
+          console.log(`Deleting event with ID: ${eventId}`);
+
+          // Eliminar el evento del almacenamiento
+          storage.deleteEventById(eventId);
+
+          // Actualizar la vista dinámica
+          const events = storage.getAllEvents(); // Recuperar eventos restantes
+          ui.renderMyEvents(events);
+
+          // Mostrar notificación de éxito
+          ui.showNotification('Event deleted successfully!', 'success');
+        }
       }
     });
   }
