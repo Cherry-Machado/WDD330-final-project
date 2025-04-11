@@ -43,20 +43,26 @@
   <main class="container">
     <section id="home-view" class="view active">
       <div class="hero">
-        <h2>Plan the Perfect Movie Night</h2>
-        <p>
-          Stop the endless debates and start watching movies!
-        </p>
-        <div class="cta-buttons">
-          <button id="create-event-btn" class="btn btn-primary">
-            Create Event
-          </button>
-          <button id="join-event-btn" class="btn btn-secondary">
-            Join Event
-          </button>
-        </div>
+          <div class="hero-content">
+              <h2 class="hero-title">Plan the Perfect Movie Night</h2>
+              <p class="hero-subtitle">Stop the debates - start watching!</p>
+              <div class="cta-container">
+                  <button class="cta-btn primary" id="create-event-btn">
+                      <span class="icon">🎬</span>
+                      Create New Event
+                  </button>
+                  <button class="cta-btn secondary" id="join-event-btn">
+                      <span class="icon">🎟️</span>
+                      Join Existing Event
+                  </button>
+              </div>
+          </div>
+          <div class="hero-illustration">
+              <div class="popcorn"></div>
+              <div class="film-strip"></div>
+          </div>
       </div>
-    </section>
+  </section>
 
     <section id="create-event-view" class="view">
       <div class="form-container">
@@ -68,16 +74,16 @@
               type="text"
               id="event-name"
               name="event-name"
-              placeholder="Enter event name"
+              placeholder="Friday Flick Fest"
               required
             />
           </div>
-          <div class="form-group datetime-group">
-            <div>
+          <div class="datetime-group">
+            <div class="form-group">
               <label for="event-date">Event Date</label>
               <input type="date" id="event-date" name="event-date" required />
             </div>
-            <div>
+            <div class="form-group">
               <label for="event-time">Event Time</label>
               <input type="time" id="event-time" name="event-time" required />
             </div>
@@ -99,9 +105,76 @@
       </div>
     </section>
 
-    <section id="event-view" class="view"></section>
+    <section id="event-view" class="view">
+      <header class="event-header">
+          <h2 class="event-title">Friday Flick Fest</h2>
+          <div class="event-meta">
+              <span class="event-date">🗓️ October 27, 2023</span>
+              <span class="event-time">⏰ 7:30 PM</span>
+          </div>
+      </header>
+      
+      <div class="dashboard-grid">
+          <!-- Movie Suggestions Column -->
+          <div class="movies-column">
+              <div class="section-header">
+                  <h3>Movie Suggestions</h3>
+                  <button class="btn add-movie" id="suggest-movie-btn">
+                      ＋ Suggest Movie
+                  </button>
+              </div>
+              <div class="movies-grid">
+                  <!-- Movie cards will be injected here -->
+              </div>
+          </div>
+          
+          <!-- Comments Column -->
+          <div class="comments-column">
+              <div class="section-header">
+                  <h3>Discussion</h3>
+              </div>
+              <div class="comments-list">
+                  <!-- Comments will be injected here -->
+              </div>
+              <form class="comment-form">
+                  <textarea placeholder="Add your comment..."></textarea>
+                  <button type="submit" class="btn submit">Post</button>
+              </form>
+          </div>
+      </div>
+  </section>
 
-    <section id="movie-details-view" class="view"></section>
+    <section id="movie-details-view" class="view">
+      <dialog id="movie-dialog" class="movie-modal">
+        <div class="modal-content">
+            <button class="close-btn" aria-label="Close">×</button>
+            <div class="movie-main">
+                <div class="movie-poster">
+                    <img src="placeholder.jpg" alt="Movie poster">
+                </div>
+                <div class="movie-info">
+                    <h2 class="movie-title">Movie Title <span class="year">(2023)</span></h2>
+                    <div class="movie-meta">
+                        <span class="rating">⭐ 8.5/10</span>
+                        <span class="duration">⏳ 2h 15m</span>
+                        <span class="genre">🎭 Action, Adventure</span>
+                    </div>
+                    <p class="movie-plot">Movie plot description goes here...</p>
+                    <div class="action-buttons">
+                        <button class="btn vote-btn">👍 Vote for this Movie</button>
+                        <button class="btn trailer-btn">▶️ Play Trailer</button>
+                    </div>
+                </div>
+            </div>
+            <div class="movie-extra">
+                <h3>Cast</h3>
+                <div class="cast-grid">
+                    <!-- Cast members -->
+                </div>
+            </div>
+        </div>
+    </dialog>
+    </section>
 
     <!--My Events Section-->
     <section id="my-events-view" class="view">
