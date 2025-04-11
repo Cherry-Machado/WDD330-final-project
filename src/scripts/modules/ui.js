@@ -214,36 +214,34 @@ export class UIModule {
             
             <div class="movie-details-container">
                 <div class="movie-poster">
-                    <img src="${
-                      movieData.poster || 'assets/images/poster-placeholder.png'
-                    }" 
-                         alt="${movieData.title} poster" 
+                    <img src="${movieData.Poster}" 
+                         alt="${movieData.Title} poster" 
                          class="fade-in">
                 </div>
                 
                 <div class="movie-info">
-                    <h2>${movieData.title} <span class="release-year">(${
-                      movieData.year
+                    <h2>${movieData.Title} <span class="release-year">(${
+                      movieData.Year
                     })</span></h2>
                     
                     <div class="movie-meta">
                         <span class="rating">⭐ ${
-                          movieData.rating || 'N/A'
+                          movieData.imdRating || 'N/A'
                         }</span>
                         <span class="runtime">⏱ ${
-                          movieData.runtime || 'N/A'
+                          movieData.Runtime || 'N/A'
                         } min</span>
-                        <span class="genre">${movieData.genre || 'N/A'}</span>
+                        <span class="genre">${movieData.Genre || 'N/A'}</span>
                     </div>
                     
                     <div class="movie-plot">
                         <h3>Plot</h3>
-                        <p>${movieData.plot || 'No plot available.'}</p>
+                        <p>${movieData.Plot || 'No plot available.'}</p>
                     </div>
                     
                     <div class="movie-actions">
                         <button id="vote-movie-btn" class="btn btn-primary" data-movie-id="${
-                          movieData.id
+                          movieData.imdID
                         }">
                             Vote for this Movie
                         </button>
