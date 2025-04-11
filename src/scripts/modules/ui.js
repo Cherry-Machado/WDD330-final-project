@@ -208,76 +208,23 @@ export class UIModule {
 
   renderMovieDetailsView(movieData) {
     const movieModal = document.getElementById('movie-dialog');
-
     movieModal.innerHTML = `
-            <button id="back-to-event" class="btn btn-secondary">← Back to Event</button>
-            
-            <div class="movie-details-container">
-                <div class="movie-poster">
-                    <img src="${movieData.Poster}" 
-                         alt="${movieData.Title} poster" 
-                         class="fade-in">
-                </div>
-                
-                <div class="movie-info">
-                    <h2>${movieData.Title} <span class="release-year">(${
-                      movieData.Year
-                    })</span></h2>
-                    
-                    <div class="movie-meta">
-                        <span class="rating">⭐ ${
-                          movieData.imdRating || 'N/A'
-                        }</span>
-                        <span class="runtime">⏱ ${
-                          movieData.Runtime || 'N/A'
-                        } min</span>
-                        <span class="genre">${movieData.Genre || 'N/A'}</span>
-                    </div>
-                    
-                    <div class="movie-plot">
-                        <h3>Plot</h3>
-                        <p>${movieData.Plot || 'No plot available.'}</p>
-                    </div>
-                    
-                    <div class="movie-actions">
-                        <button id="vote-movie-btn" class="btn btn-primary" data-movie-id="${
-                          movieData.imdID
-                        }">
-                            Vote for this Movie
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="movie-extras">
-                <div class="trailer-section">
-                    <h3>Trailer</h3>
-                    ${
-                      movieData.trailer
-                        ? `<iframe width="560" height="315" src="https://www.youtube.com/embed/${movieData.trailer}" 
-                         frameborder="0" allowfullscreen></iframe>`
-                        : '<p>No trailer available.</p>'
-                    }
-                </div>
-                
-                <div class="cast-section">
-                    <h3>Cast</h3>
-                    ${
-                      movieData.cast
-                        ? `<ul class="cast-list">${movieData.cast
-                            .slice(0, 5)
-                            .map(
-                              (actor) =>
-                                `<li>${actor.name} as ${
-                                  actor.character || 'Unknown'
-                                }</li>`,
-                            )
-                            .join('')}</ul>`
-                        : '<p>No cast information available.</p>'
-                    }
-                </div>
-            </div>
-        `;
+      <div class="movie-details-container">
+        <div class="movie-poster">
+          <img src="${movieData.Poster}" alt="${movieData.Title} poster">
+        </div>
+        <div class="movie-info">
+          <h2>${movieData.Title} <span class="release-year">(${movieData.Year})</span></h2>
+          <div class="movie-meta">
+            <span>⭐ ${movieData.imdbRating || 'N/A'}</span>
+            <span>${movieData.Runtime || 'N/A'}</span>
+            <span>${movieData.Genre || 'N/A'}</span>
+          </div>
+          <p>${movieData.Plot || 'No description available.'}</p>
+        </div>
+      </div>
+      <button id="close-movie-dialog" class="btn btn-secondary">Close</button>
+    `;
   }
 
   formatEventDate(dateString) {

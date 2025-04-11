@@ -62,4 +62,4 @@ export class OMDBApi {
     return rt ? rt.Value : 'N/A';
   }
 }
-// Export the OMDBApi class
+//Export  OMDBApi class
