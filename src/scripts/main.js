@@ -37,6 +37,23 @@ window.app = {
   state,
 };
 
+// Error handling
+window.addEventListener('error', (event) => {
+  console.error('Global error:', event.error);
+  ui.showNotification(
+    'An unexpected error occurred. Please try again.',
+    'error',
+  );
+});
+
+window.addEventListener('unhandledrejection', (event) => {
+  console.error('Unhandled rejection:', event.reason);
+  ui.showNotification(
+    'A network error occurred. Please check your connection.',
+    'error',
+  );
+});
+
 /*
 // Test API calls
 async function testAPIs() {
