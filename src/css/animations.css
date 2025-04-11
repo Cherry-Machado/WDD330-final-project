@@ -1,4 +1,36 @@
 /* Fade animations */
+@keyframes formFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-container {
+  animation: formFadeIn 0.5s ease-out;
+}
+
+/*
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.form-container {
+  animation: slideIn 0.5s ease-out;
+}
+*/
 @keyframes fadeIn {
   from {
     opacity: 0;

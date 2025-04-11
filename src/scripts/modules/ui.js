@@ -66,6 +66,12 @@ export class UIModule {
 
   // Función modular para generar tarjetas de eventos
   generateEventCard(event) {
+    // Validar datos del evento
+    if (!event.date || !event.time || !event.participants) {
+      console.warn(`Missing data for event: ${event.id}`);
+      return; // Si faltan datos, no genera la tarjeta
+    }
+
     const eventCard = document.createElement('article');
     eventCard.classList.add('event-card');
     eventCard.setAttribute('data-event-id', event.id);

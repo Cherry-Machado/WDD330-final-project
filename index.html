@@ -58,7 +58,46 @@
       </div>
     </section>
 
-    <section id="create-event-view" class="view"></section>
+    <section id="create-event-view" class="view">
+      <div class="form-container">
+        <h2 class="form-title">Create New Event</h2>
+        <form id="create-event-form" class="event-form">
+          <div class="form-group">
+            <label for="event-name">Event Name</label>
+            <input
+              type="text"
+              id="event-name"
+              name="event-name"
+              placeholder="Enter event name"
+              required
+            />
+          </div>
+          <div class="form-group datetime-group">
+            <div>
+              <label for="event-date">Event Date</label>
+              <input type="date" id="event-date" name="event-date" required />
+            </div>
+            <div>
+              <label for="event-time">Event Time</label>
+              <input type="time" id="event-time" name="event-time" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="event-description">Event Description</label>
+            <textarea
+              id="event-description"
+              name="event-description"
+              placeholder="Describe your event"
+              required
+            ></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn cancel">Cancel</button>
+            <button type="submit" class="btn submit">Create Event</button>
+          </div>
+        </form>
+      </div>
+    </section>
 
     <section id="event-view" class="view"></section>
 

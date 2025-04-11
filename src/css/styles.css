@@ -85,6 +85,12 @@ a {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.btn:active {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transform: scale(0.95);
+  transition: transform 0.1s ease;
+}
+
 /* Header */
 
 .main-header {
@@ -277,6 +283,21 @@ textarea {
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.1);
   color: var(--color-light);
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--color-accent1);
+  box-shadow: 0 0 5px var(--color-accent1);
+  transition: box-shadow 0.3s ease;
+}
+
+input.error,
+textarea.error {
+  border-color: #ff4d4d;
+  /* Red for error */
+  box-shadow: 0 0 6px #ff4d4d;
 }
 
 .datetime-group {

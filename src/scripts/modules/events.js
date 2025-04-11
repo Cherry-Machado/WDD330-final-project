@@ -63,6 +63,10 @@ export class EventModule {
   // Modificar en events.js
   scrollToSection(targetId) {
     const targetSection = document.querySelector(targetId);
+    if (!targetSection) {
+      console.error(`Target section not found: ${targetId}`);
+      return;
+    }
     if (targetSection) {
       const headerHeight = document.querySelector('.main-header').offsetHeight;
       const offset = 20; // Offset adicional
@@ -133,6 +137,11 @@ export class EventModule {
     const { userPreferences } = state;
     const recent = userPreferences.recentlyViewed || [];
 
+    if (!movieData.id || !movieData.title || !movieData.poster) {
+      console.warn('Incomplete movie data, skipping recently viewed addition.');
+      return;
+    }
+
     // Remove if already exists
     const existingIndex = recent.findIndex((m) => m.id === movieData.id);
     if (existingIndex >= 0) {
@@ -153,12 +162,28 @@ export class EventModule {
   }
 
   handleCreateEventForm(form) {
+    // Validate form fields
+    const nameField = form.querySelector('#event-name');
+    const dateField = form.querySelector('#event-date');
+    const timeField = form.querySelector('#event-time');
+    const descriptionField = form.querySelector('#event-description');
+
+    if (!nameField || !dateField || !timeField || !descriptionField) {
+      console.error('One or more form fields are missing in the DOM.');
+      ui.showNotification(
+        'Form setup is incomplete. Please check the fields.',
+        'error',
+      );
+      return; // Stop filling the form
+    }
+
+    // Get values from the form
     const eventData = {
       id: this.generateEventId(),
-      name: form.querySelector('#event-name').value,
-      date: form.querySelector('#event-date').value,
-      time: form.querySelector('#event-time').value,
-      description: form.querySelector('#event-description').value,
+      name: nameField.value.trim(),
+      date: dateField.value,
+      time: timeField.value,
+      description: descriptionField.value.trim(),
       movies: [],
       participants: [],
       comments: [],
@@ -187,6 +212,10 @@ export class EventModule {
       timestamp: new Date().toISOString(),
     };
 
+    if (!textarea.value.trim()) {
+      ui.showNotification('Comment cannot be empty.', 'error');
+      return;
+    }
     // Add to current event
     if (state.currentEvent) {
       state.currentEvent.comments.push(comment);
@@ -207,17 +236,27 @@ export class EventModule {
     const commentsSection = document.getElementById('comments-section');
     if (!commentsSection) return;
 
+    // Verificar si el comentario ya existe en el DOM
+    const existingComment = document.querySelector(
+      `[data-comment-id="${comment.id}"]`,
+    );
+    if (existingComment) {
+      ui.showNotification('This comment already exists!', 'warning');
+      //console.warn(`Duplicate comment detected: ${comment.id}`);
+      return; // Salir si ya existe
+    }
+
+    // Crear y agregar el nuevo comentario
     const commentEl = document.createElement('div');
     commentEl.className = 'comment fade-in';
+    commentEl.setAttribute('data-comment-id', comment.id); // Agregar un atributo único al comentario
     commentEl.innerHTML = `
-            <div class="comment-header">
-                <span class="comment-author">${comment.author}</span>
-                <span class="comment-time">${new Date(
-                  comment.timestamp,
-                ).toLocaleString()}</span>
-            </div>
-            <div class="comment-text">${comment.text}</div>
-        `;
+      <div class="comment-header">
+        <span class="comment-author">${comment.author}</span>
+        <span class="comment-time">${new Date(comment.timestamp).toLocaleString()}</span>
+      </div>
+      <div class="comment-text">${comment.text}</div>
+    `;
 
     commentsSection.appendChild(commentEl);
   }
