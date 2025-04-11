@@ -77,7 +77,6 @@ a {
 .btn-secondary {
   background-color: var(--color-accent1);
   color: var(--color-light);
-  margin-left: 1rem;
 }
 
 .btn:hover {
@@ -166,12 +165,16 @@ main.container {
   min-height: calc(100vh - 80px);
   padding: 2rem;
   display: block;
-  /* Cambiar de flex a block */
   opacity: 1 !important;
-  /* Asegurar visibilidad */
   transform: none !important;
-  /* Resetear transformaciones */
 }
+
+/*.view {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}*/
 
 .view.active {
   display: block;
@@ -216,6 +219,7 @@ main.container {
 }
 
 .cta-container {
+  position: absolute;
   display: grid;
   gap: 1rem;
   max-width: 400px;
@@ -363,13 +367,13 @@ textarea.error {
   gap: 2rem;
 }
 
-/*
+
 .movies-grid {
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
-*/
+
 
 .movie-card {
   background: rgba(255, 255, 255, 0.05);
@@ -490,6 +494,45 @@ textarea.error {
 .search-results {
   max-height: 60vh;
   overflow-y: auto;
+}
+
+/* Surprise me */
+
+/* Surprise Modal Styles */
+.surprise-modal {
+  width: 90%;
+  max-width: 400px;
+  border: none;
+  border-radius: 12px;
+  padding: 2rem;
+  background: var(--color-primary);
+}
+
+.genre-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 0.5rem;
+}
+
+.year-range {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.spin-btn {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 50px;
+  background: var(--color-secondary);
+  border: none;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.spin-btn:hover {
+  transform: rotate(5deg) scale(1.05);
 }
 
 /* My Events Section Styles */
@@ -688,17 +731,21 @@ textarea.error {
 
 /* Desktop Adaptation */
 @media (min-width: 768px) {
-  /* .hero {
-    flex-direction: row;
+  .hero {
+    height: 90vh;
+    flex-direction: column;
     align-items: center;
-    text-align: left;
-  }*/
+    justify-content: center;
+  }
 
   .hero-content {
     flex: 1;
     order: initial;
-    margin-top: 0;
+    margin-top: 0 auto;
     padding-right: 3rem;
+    text-align: center;
+    transform: translateZ(0);
+    justify-content: center;  
   }
 
   .hero-illustration {
@@ -719,6 +766,11 @@ textarea.error {
 
   .movie-main {
     grid-template-columns: 300px 1fr;
+  }
+
+  .cta-btn {
+
+    position: relative;
   }
 }
 

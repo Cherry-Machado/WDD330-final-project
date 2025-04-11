@@ -43,26 +43,26 @@
   <main class="container">
     <section id="home-view" class="view active">
       <div class="hero">
-          <div class="hero-content">
-              <h2 class="hero-title">Plan the Perfect Movie Night</h2>
-              <p class="hero-subtitle">Stop the debates - start watching!</p>
-              <div class="cta-container">
-                  <button class="cta-btn primary" id="create-event-btn">
-                      <span class="icon">🎬</span>
-                      Create New Event
-                  </button>
-                  <button class="cta-btn secondary" id="join-event-btn">
-                      <span class="icon">🎟️</span>
-                      Join Existing Event
-                  </button>
-              </div>
+        <div class="hero-content">
+          <h2 class="hero-title">Plan the Perfect Movie Night</h2>
+          <p class="hero-subtitle">Stop the debates - start watching!</p>
+          <div class="cta-container">
+            <button class="cta-btn primary" id="create-event-btn">
+              <span class="icon">🎬</span>
+              Create New Event
+            </button>
+            <button class="cta-btn secondary" id="join-event-btn">
+              <span class="icon">🎟️</span>
+              Join Existing Event
+            </button>
           </div>
-          <div class="hero-illustration">
-              <div class="popcorn"></div>
-              <div class="film-strip"></div>
-          </div>
+        </div>
+        <div class="hero-illustration">
+          <div class="popcorn"></div>
+          <div class="film-strip"></div>
+        </div>
       </div>
-  </section>
+    </section>
 
     <section id="create-event-view" class="view">
       <div class="form-container">
@@ -70,13 +70,7 @@
         <form id="create-event-form" class="event-form">
           <div class="form-group">
             <label for="event-name">Event Name</label>
-            <input
-              type="text"
-              id="event-name"
-              name="event-name"
-              placeholder="Friday Flick Fest"
-              required
-            />
+            <input type="text" id="event-name" name="event-name" placeholder="Friday Flick Fest" required />
           </div>
           <div class="datetime-group">
             <div class="form-group">
@@ -90,12 +84,8 @@
           </div>
           <div class="form-group">
             <label for="event-description">Event Description</label>
-            <textarea
-              id="event-description"
-              name="event-description"
-              placeholder="Describe your event"
-              required
-            ></textarea>
+            <textarea id="event-description" name="event-description" placeholder="Describe your event"
+              required></textarea>
           </div>
           <div class="form-actions">
             <button type="submit" class="btn submit">Create Event</button>
@@ -107,73 +97,41 @@
 
     <section id="event-view" class="view">
       <header class="event-header">
-          <h2 class="event-title">Friday Flick Fest</h2>
-          <div class="event-meta">
-              <span class="event-date">🗓️ October 27, 2023</span>
-              <span class="event-time">⏰ 7:30 PM</span>
-          </div>
-      </header>
-      
-      <div class="dashboard-grid">
-          <!-- Movie Suggestions Column -->
-          <div class="movies-column">
-              <div class="section-header">
-                  <h3>Movie Suggestions</h3>
-                  <button class="btn add-movie" id="suggest-movie-btn">
-                      ＋ Suggest Movie
-                  </button>
-              </div>
-              <div class="movies-grid">
-                  <!-- Movie cards will be injected here -->
-              </div>
-          </div>
-          
-          <!-- Comments Column -->
-          <div class="comments-column">
-              <div class="section-header">
-                  <h3>Discussion</h3>
-              </div>
-              <div class="comments-list">
-                  <!-- Comments will be injected here -->
-              </div>
-              <form class="comment-form">
-                  <textarea placeholder="Add your comment..."></textarea>
-                  <button type="submit" class="btn submit">Post</button>
-              </form>
-          </div>
-      </div>
-  </section>
-
-    <section id="movie-details-view" class="view">
-      <dialog id="movie-dialog" class="movie-modal">
-        <div class="modal-content">
-            <button class="close-btn" aria-label="Close">×</button>
-            <div class="movie-main">
-                <div class="movie-poster">
-                    <img src="placeholder.jpg" alt="Movie poster">
-                </div>
-                <div class="movie-info">
-                    <h2 class="movie-title">Movie Title <span class="year">(2023)</span></h2>
-                    <div class="movie-meta">
-                        <span class="rating">⭐ 8.5/10</span>
-                        <span class="duration">⏳ 2h 15m</span>
-                        <span class="genre">🎭 Action, Adventure</span>
-                    </div>
-                    <p class="movie-plot">Movie plot description goes here...</p>
-                    <div class="action-buttons">
-                        <button class="btn vote-btn">👍 Vote for this Movie</button>
-                        <button class="btn trailer-btn">▶️ Play Trailer</button>
-                    </div>
-                </div>
-            </div>
-            <div class="movie-extra">
-                <h3>Cast</h3>
-                <div class="cast-grid">
-                    <!-- Cast members -->
-                </div>
-            </div>
+        <h2 class="event-title">Friday Flick Fest</h2>
+        <div class="event-meta">
+          <span class="event-date">🗓️ October 27, 2023</span>
+          <span class="event-time">⏰ 7:30 PM</span>
         </div>
-    </dialog>
+      </header>
+
+      <div class="dashboard-grid">
+        <!-- Movie Suggestions Column -->
+        <div class="movies-column">
+          <div class="section-header">
+            <h3>Movie Suggestions</h3>
+            <button class="btn add-movie" id="suggest-movie-btn">
+              ＋ Suggest Movie
+            </button>
+          </div>
+          <div class="movies-grid">
+            <!-- Movie cards will be injected here -->
+          </div>
+        </div>
+
+        <!-- Comments Column -->
+        <div class="comments-column">
+          <div class="section-header">
+            <h3>Discussion</h3>
+          </div>
+          <div class="comments-list">
+            <!-- Comments will be injected here -->
+          </div>
+          <form class="comment-form">
+            <textarea placeholder="Add your comment..."></textarea>
+            <button type="submit" class="btn submit">Post</button>
+          </form>
+        </div>
+      </div>
     </section>
 
     <!--My Events Section-->
@@ -185,16 +143,89 @@
         </button>
       </div>
 
-      
-        <div class="events-grid"></div>
 
-        <div class="no-events">
-          <img src="assets/images/popcorn.png" alt="No events" class="empty-state" />
-          <p>No events found. Start by creating a new movie night!</p>
-        </div>
-      
+      <div class="events-grid"></div>
+
+      <div class="no-events">
+        <img src="assets/images/popcorn.png" alt="No events" class="empty-state" />
+        <p>No events found. Start by creating a new movie night!</p>
+      </div>
     </section>
   </main>
+
+  <!--Dialog Modals-->
+  <dialog id="movie-dialog" class="movie-modal">
+    <div class="modal-content">
+      <button class="close-btn" aria-label="Close">×</button>
+      <div class="movie-main">
+        <div class="movie-poster">
+          <img src="placeholder.jpg" alt="Movie poster">
+        </div>
+        <div class="movie-info">
+          <h2 class="movie-title">Movie Title <span class="year">(2023)</span></h2>
+          <div class="movie-meta">
+            <span class="rating">⭐ 8.5/10</span>
+            <span class="duration">⏳ 2h 15m</span>
+            <span class="genre">🎭 Action, Adventure</span>
+          </div>
+          <p class="movie-plot">Movie plot description goes here...</p>
+          <div class="action-buttons">
+            <button class="btn vote-btn">👍 Vote for this Movie</button>
+            <button class="btn trailer-btn">▶️ Play Trailer</button>
+          </div>
+        </div>
+      </div>
+      <div class="movie-extra">
+        <h3>Cast</h3>
+        <div class="cast-grid">
+          <!-- Cast members -->
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+
+  <!--Movie Search Modal-->
+  <dialog id="search-modal" class="search-modal">
+    <div class="search-header">
+      <h3>Search Movies</h3>
+      <div class="search-bar">
+        <input type="text" placeholder="Search movies...">
+        <button class="search-btn">🔍</button>
+      </div>
+    </div>
+    <div class="search-results">
+      <!-- Results injected here -->
+    </div>
+  </dialog>
+
+  <!--Surprise Me Modal-->
+  <dialog id="surprise-modal" class="surprise-modal">
+    <div class="surprise-content">
+      <h3>Surprise Me!</h3>
+      <form class="surprise-form">
+        <div class="filter-group">
+          <label>Genre</label>
+          <div class="genre-grid">
+            <!-- Genre checkboxes -->
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <label>Release Year</label>
+          <div class="year-range">
+            <input type="range" min="1920" max="2025" value="2020">
+            <output>2020-2025</output>
+          </div>
+        </div>
+
+        <button type="submit" class="spin-btn">
+          🎰 Spin the Wheel!
+        </button>
+      </form>
+    </div>
+  </dialog>
+
   <footer class="footer">
     <div class="footer__content">
       <p>©2025 Movie Night Mayhem 🍒 Cherry Machado 🍒 Venezuela</p>
