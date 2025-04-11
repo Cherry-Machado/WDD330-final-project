@@ -11,7 +11,6 @@ export class UIModule {
       home: document.getElementById('home-view'),
       createEvent: document.getElementById('create-event-view'),
       event: document.getElementById('event-view'),
-      movieDetails: document.getElementById('movie-details-view'),
       myeventsview: document.getElementById('my-events-view'),
     };
   }
@@ -297,7 +296,7 @@ export class UIModule {
     list.innerHTML = '<div class="spinner"></div>';
 
     try {
-      // In a real app, this would fetch from your backend or local storage
+      // Obtiene las sugerencias de películas para el evento
       const suggestions = await this.fetchMovieSuggestions(eventId);
 
       if (suggestions.length === 0) {
@@ -306,23 +305,31 @@ export class UIModule {
         return;
       }
 
+      // Renderizar películas
       list.innerHTML = suggestions
         .map(
           (movie) => `
-                <div class="movie-card" data-movie-id="${movie.id}">
-                    <img src="${
-                      movie.poster || 'assets/images/poster-placeholder.png'
-                    }" 
-                         alt="${movie.title} poster">
-                    <h4>${movie.title}</h4>
-                    <div class="movie-card-meta">
-                        <span class="votes">${movie.votes} votes</span>
-                        <span class="year">${movie.year}</span>
-                    </div>
-                </div>
-            `,
+            <div class="movie-card" data-movie-id="${movie.id}">
+              <img src="${movie.poster || 'assets/images/poster-placeholder.png'}" 
+                   alt="${movie.title} poster" class="movie-poster">
+              <h4>${movie.title}</h4>
+              <div class="movie-card-meta">
+                <span class="votes">${movie.votes} votes</span>
+                <span class="year">${movie.year}</span>
+              </div>
+            </div>
+          `,
         )
         .join('');
+
+      // Añade eventos de clic a cada póster
+      list.querySelectorAll('.movie-card .movie-poster').forEach((poster) => {
+        poster.addEventListener('click', (e) => {
+          const card = e.target.closest('.movie-card');
+          const movieId = card.getAttribute('data-movie-id');
+          this.openMovieModal(movieId); // Abrir modal con los detalles de la película
+        });
+      });
     } catch (error) {
       console.error('Error loading suggestions:', error);
       list.innerHTML =
@@ -367,6 +374,54 @@ export class UIModule {
       console.error('Error fetching movie suggestions:', error);
       return [];
     }
+  }
+
+  //Opens the movie modal with details
+  openMovieModal(movieId) {
+    const movieModal = document.getElementById('movie-dialog');
+    if (!movieModal) {
+      console.error('Movie dialog not found.');
+      return;
+    }
+
+    // Obtener datos de la película del almacenamiento
+    const eventMovies = storage.getAllMovies(); // Asegúrate de tener un método para esto
+    const movieData = eventMovies.find((movie) => movie.id === movieId);
+
+    if (!movieData) {
+      console.error(`Movie with ID ${movieId} not found.`);
+      return;
+    }
+
+    // Renderizar el contenido del modal
+    movieModal.innerHTML = `
+      <div class="movie-details-container">
+        <div class="movie-poster">
+          <img src="${movieData.poster || 'assets/images/poster-placeholder.png'}" 
+               alt="${movieData.title} poster">
+        </div>
+        <div class="movie-info">
+          <h2>${movieData.title} <span class="release-year">(${movieData.year})</span></h2>
+          <div class="movie-meta">
+            <span class="rating">⭐ ${movieData.rating || 'N/A'}</span>
+            <span class="runtime">⏱ ${movieData.runtime || 'N/A'} min</span>
+            <span class="genre">${movieData.genre || 'N/A'}</span>
+          </div>
+          <p>${movieData.plot || 'No description available.'}</p>
+        </div>
+      </div>
+      <button id="close-movie-dialog" class="btn btn-secondary">Close</button>
+    `;
+
+    // Mostrar el modal
+    movieModal.showModal();
+
+    // Configurar el botón de cierre
+    document
+      .getElementById('close-movie-dialog')
+      .addEventListener('click', () => {
+        movieModal.close();
+      });
   }
 
   showNotification(message, type = 'info') {
