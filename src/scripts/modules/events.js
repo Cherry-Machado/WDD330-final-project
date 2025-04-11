@@ -18,7 +18,7 @@ const omdbApi = new OMDBApi(omdbApiKey);
 
 // App state
 const state = {
-  currentView: 'home',
+  currentView: 'home-view',
   currentEvent: null,
   userPreferences: storage.getUserPreferences() || {
     preferredGenres: [],
@@ -172,7 +172,7 @@ export class EventModule {
 
       // Show movie details
       ui.loadView('movieDetails', movieData);
-
+      console.log('Movie data:', movieData);
       // Add to recently viewed
       this.addToRecentlyViewed(movieData);
     } catch (error) {
