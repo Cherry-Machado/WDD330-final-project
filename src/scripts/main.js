@@ -55,6 +55,7 @@ window.addEventListener('unhandledrejection', (event) => {
 });
 
 // Test API calls
+/*
 async function testAPIs() {
   try {
     const tmdbMovies = await tmdbApi.searchMovies('Inception');
@@ -68,7 +69,7 @@ async function testAPIs() {
 }
 
 testAPIs();
-
+*/
 // Initialize the app
 function init() {
   // Set up event listeners

@@ -595,7 +595,7 @@ export class UIModule {
       this.loadSurprisePick(genre, yearStart, yearEnd); // Método para cargar película aleatoria
     });
   }
-
+  /*
   async loadSearchResults(query) {
     const resultsContainer = document.getElementById('search-results');
     resultsContainer.innerHTML = '<div class="spinner"></div>';
@@ -618,7 +618,7 @@ export class UIModule {
       resultsContainer.innerHTML = '<p>Error loading results. Try again.</p>';
     }
   }
-
+*/
   async loadSurprisePick(genre, yearStart, yearEnd) {
     const resultsContainer = document.getElementById('surprise-results');
     resultsContainer.innerHTML = '<div class="spinner"></div>';
