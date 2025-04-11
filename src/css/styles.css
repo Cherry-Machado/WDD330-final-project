@@ -345,9 +345,11 @@ textarea.error {
   margin-top: -2rem;
   /* Compensar padding superior */
   padding-top: 2rem;
-  background: linear-gradient(to bottom,
-      var(--color-primary) 30px,
-      transparent 30px);
+  background: linear-gradient(
+    to bottom,
+    var(--color-primary) 30px,
+    transparent 30px
+  );
 }
 
 .event-title {
@@ -367,13 +369,11 @@ textarea.error {
   gap: 2rem;
 }
 
-
 .movies-grid {
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
-
 
 .movie-card {
   background: rgba(255, 255, 255, 0.05);
@@ -685,10 +685,12 @@ textarea.error {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(90deg,
-      transparent 25%,
-      rgba(255, 255, 255, 0.1) 50%,
-      transparent 75%);
+  background: linear-gradient(
+    90deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 75%
+  );
   background-size: 1000px 100%;
   animation: shimmer 2s infinite;
 }
@@ -745,7 +747,7 @@ textarea.error {
     padding-right: 3rem;
     text-align: center;
     transform: translateZ(0);
-    justify-content: center;  
+    justify-content: center;
   }
 
   .hero-illustration {
@@ -769,7 +771,6 @@ textarea.error {
   }
 
   .cta-btn {
-
     position: relative;
   }
 }
