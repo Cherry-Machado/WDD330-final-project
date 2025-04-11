@@ -65,16 +65,16 @@ export class UIModule {
 
   renderView(viewName, data) {
     switch (viewName) {
-      case 'home':
+      case 'home-view':
         this.renderHomeView();
         break;
-      case 'createEvent':
+      case 'create-event-view':
         this.renderCreateEventView();
         break;
-      case 'event':
+      case 'event-view"':
         this.renderEventView(data);
         break;
-      case 'my-events':
+      case 'my-events-view':
         this.renderMyEvents(data);
         break;
       default:
