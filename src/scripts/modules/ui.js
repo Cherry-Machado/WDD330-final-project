@@ -8,10 +8,10 @@ const storage = new StorageModule();
 export class UIModule {
   constructor() {
     this.views = {
-      home: document.getElementById('home-view'),
-      createEvent: document.getElementById('create-event-view'),
-      event: document.getElementById('event-view'),
-      myeventsview: document.getElementById('my-events-view'),
+      'home-view': document.getElementById('home-view'),
+      'create-event-view': document.getElementById('create-event-view'),
+      'event-view': document.getElementById('event-view'),
+      'my-events-view': document.getElementById('my-events-view'),
     };
   }
 
@@ -23,7 +23,7 @@ export class UIModule {
   loadView(viewName, data = {}) {
     // Hide all views
     Object.values(this.views).forEach((view) => {
-      view.classList.remove('active');
+      if (view) view.classList.remove('active');
     });
 
     // Show the requested view
@@ -31,6 +31,8 @@ export class UIModule {
     if (view) {
       view.classList.add('active');
       this.renderView(viewName, data);
+    } else {
+      console.error(`View ${viewName} not found`);
     }
   }
 
@@ -39,6 +41,25 @@ export class UIModule {
    * @param {string} viewName - The name of the view to render
    * @param {object} data - Data needed to render the view
    */
+
+  renderView(viewName, data) {
+    switch (viewName) {
+      case 'home-view':
+        this.renderHomeView();
+        break;
+      case 'create-event-view':
+        this.renderCreateEventView();
+        break;
+      case 'event-view"':
+        this.renderEventView(data);
+        break;
+      case 'my-events-view':
+        this.renderMyEvents(data);
+        break;
+      default:
+        console.error(`Unknown view: ${viewName}`);
+    }
+  }
 
   renderEventCards(events) {
     const eventsGrid = document.querySelector('#my-events-view .events-grid');
@@ -61,25 +82,6 @@ export class UIModule {
       const eventCard = this.generateEventCard(event);
       eventsGrid.appendChild(eventCard);
     });
-  }
-
-  renderView(viewName, data) {
-    switch (viewName) {
-      case 'home-view':
-        this.renderHomeView();
-        break;
-      case 'create-event-view':
-        this.renderCreateEventView();
-        break;
-      case 'event-view"':
-        this.renderEventView(data);
-        break;
-      case 'my-events-view':
-        this.renderMyEvents(data);
-        break;
-      default:
-        console.error(`Unknown view: ${viewName}`);
-    }
   }
 
   renderHomeView() {
