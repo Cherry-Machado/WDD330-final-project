@@ -385,15 +385,16 @@ export class UIModule {
     }
 
     // Obtener datos de la película del almacenamiento
-    const eventMovies = storage.getAllMovies(); // Asegúrate de tener un método para esto
-    const movieData = eventMovies.find((movie) => movie.id === movieId);
+    const events = storage.getAllEvents(); // Recuperar todos los eventos
+    const allMovies = events.flatMap((event) => event.movies); // Agrupar todas las películas
+    const movieData = allMovies.find((movie) => movie.id === movieId);
 
     if (!movieData) {
       console.error(`Movie with ID ${movieId} not found.`);
       return;
     }
 
-    // Renderizar el contenido del modal
+    // Renderizar contenido del modal
     movieModal.innerHTML = `
       <div class="movie-details-container">
         <div class="movie-poster">
@@ -407,7 +408,7 @@ export class UIModule {
             <span class="runtime">⏱ ${movieData.runtime || 'N/A'} min</span>
             <span class="genre">${movieData.genre || 'N/A'}</span>
           </div>
-          <p>${movieData.plot || 'No description available.'}</p>
+          <p>${movieData.plot || 'No plot description available.'}</p>
         </div>
       </div>
       <button id="close-movie-dialog" class="btn btn-secondary">Close</button>
@@ -416,7 +417,7 @@ export class UIModule {
     // Mostrar el modal
     movieModal.showModal();
 
-    // Configurar el botón de cierre
+    // Configurar cierre del modal
     document
       .getElementById('close-movie-dialog')
       .addEventListener('click', () => {

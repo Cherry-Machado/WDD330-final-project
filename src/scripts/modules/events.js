@@ -64,6 +64,16 @@ export class EventModule {
       });
     });
 
+    // Manejar el evento de búsqueda de películas
+    document.addEventListener('click', (event) => {
+      const poster = event.target.closest('.movie-poster');
+      if (poster) {
+        const movieCard = poster.closest('.movie-card');
+        const movieId = movieCard.getAttribute('data-movie-id');
+        ui.openMovieModal(movieId); // Llama al método en ui.js
+      }
+    });
+
     // Manejar clics en los botones "View Event" y "Delete Event"
     document.addEventListener('click', (event) => {
       const viewButton = event.target.closest('.view-event');
