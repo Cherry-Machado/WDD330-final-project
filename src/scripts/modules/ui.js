@@ -495,18 +495,32 @@ export class UIModule {
   }
 
   // Generar tarjeta de película
+
   generateMovieCard(movie) {
     return `
-      <div class="movie-card">
-        <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title} poster">
-        <h4>${movie.title}</h4>
-        <div class="movie-meta">
-          <span>⭐ ${movie.vote_average}</span>
-          <span>${new Date(movie.release_date).getFullYear()}</span>
+        <div class="movie-card" data-movie-id="${movie.id}">
+          <img src="${movie.poster || 'assets/images/poster-placeholder.png'}" alt="${movie.title} poster">
+          <h4>${movie.title}</h4>
+          <div class="movie-meta">
+            <span>⭐ ${movie.votes || 'N/A'}</span>
+            <span>${movie.year || ''}</span>
+          </div>
         </div>
-      </div>
     `;
   }
+
+  //generateMovieCard(movie) {
+  //  return `
+  //    <div class="movie-card">
+  //      <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title} poster">
+  //      <h4>${movie.title}</h4>
+  //      <div class="movie-meta">
+  //        <span>⭐ ${movie.vote_average}</span>
+  //        <span>${new Date(movie.release_date).getFullYear()}</span>
+  //      </div>
+  //    </div>
+  //  `;
+  //}
 
   openSearchModal() {
     const searchModal = document.getElementById('search-modal');
@@ -640,5 +654,24 @@ export class UIModule {
       console.error('Error loading surprise pick:', error);
       resultsContainer.innerHTML = '<p>Error loading surprise. Try again.</p>';
     }
+  }
+  async fetchMovies(query) {
+    // Para propósitos de prueba, retornamos una película dummy.
+    return [
+      {
+        poster: 'assets/images/poster-placeholder.png',
+        title: 'Inception',
+        year: '2010',
+      },
+    ];
+  }
+
+  async fetchRandomMovie(genre, yearStart, yearEnd) {
+    // Para propósitos de prueba, retornamos una película dummy.
+    return {
+      poster: 'assets/images/poster-placeholder.png',
+      title: 'Inception',
+      year: '2010',
+    };
   }
 }
