@@ -45,7 +45,7 @@ export class EventModule {
     document
       .getElementById('create-event-btn')
       .addEventListener('click', () => {
-        ui.renderView('create-event-view');
+        ui.renderView('create-event-view"');
       });
 
     document.getElementById('join-event-btn').addEventListener('click', () => {
