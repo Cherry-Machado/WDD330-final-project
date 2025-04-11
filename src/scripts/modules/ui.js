@@ -545,4 +545,138 @@ export class UIModule {
       .map((comment) => this.renderComment(comment))
       .join('');
   }
+
+  openSearchModal() {
+    const searchModal = document.getElementById('search-modal');
+    if (!searchModal) {
+      console.error('Search modal not found.');
+      return;
+    }
+
+    // Renderizar contenido dinámico si es necesario
+    searchModal.innerHTML = `
+      <div class="search-modal-content">
+        <h2>Movie Search</h2>
+        <form id="search-form">
+          <input type="text" id="search-input" placeholder="Type a movie title..." />
+          <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+        <div id="search-results" class="results-grid">
+          <!-- Results will be loaded dynamically -->
+        </div>
+        <button id="close-search-modal" class="btn btn-secondary">Close</button>
+      </div>
+    `;
+
+    searchModal.showModal();
+
+    // Configurar cierre del modal
+    document
+      .getElementById('close-search-modal')
+      .addEventListener('click', () => {
+        searchModal.close();
+      });
+
+    // Configurar búsqueda en tiempo real
+    document.getElementById('search-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const query = document.getElementById('search-input').value.trim();
+      this.loadSearchResults(query); // Método para cargar resultados
+    });
+  }
+
+  openSurpriseModal() {
+    const surpriseModal = document.getElementById('surprise-modal');
+    if (!surpriseModal) {
+      console.error('Surprise modal not found.');
+      return;
+    }
+
+    // Renderizar contenido dinámico si es necesario
+    surpriseModal.innerHTML = `
+      <div class="surprise-modal-content">
+        <h2>Surprise Me</h2>
+        <form id="surprise-form">
+          <label>
+            Genre:
+            <input type="text" id="genre-input" placeholder="Select genre..." />
+          </label>
+          <label>
+            Year Range:
+            <input type="number" id="year-start" placeholder="Start year" />
+            <input type="number" id="year-end" placeholder="End year" />
+          </label>
+          <button type="submit" class="btn btn-primary">Spin</button>
+        </form>
+        <div id="surprise-results" class="results-grid">
+          <!-- Random movie will be loaded dynamically -->
+        </div>
+        <button id="close-surprise-modal" class="btn btn-secondary">Close</button>
+      </div>
+    `;
+
+    surpriseModal.showModal();
+
+    // Configurar cierre del modal
+    document
+      .getElementById('close-surprise-modal')
+      .addEventListener('click', () => {
+        surpriseModal.close();
+      });
+
+    // Configurar lógica sorpresa
+    document.getElementById('surprise-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const genre = document.getElementById('genre-input').value.trim();
+      const yearStart = document.getElementById('year-start').value;
+      const yearEnd = document.getElementById('year-end').value;
+      this.loadSurprisePick(genre, yearStart, yearEnd); // Método para cargar película aleatoria
+    });
+  }
+
+  async loadSearchResults(query) {
+    const resultsContainer = document.getElementById('search-results');
+    resultsContainer.innerHTML = '<div class="spinner"></div>';
+
+    try {
+      // Simulación de búsqueda (puedes conectar con una API real)
+      const results = await this.fetchMovies(query); // Método ficticio para obtener datos
+      resultsContainer.innerHTML = results
+        .map(
+          (movie) => `
+            <div class="movie-card">
+              <img src="${movie.poster}" alt="${movie.title}">
+              <h4>${movie.title}</h4>
+            </div>
+          `,
+        )
+        .join('');
+    } catch (error) {
+      console.error('Error loading search results:', error);
+      resultsContainer.innerHTML = '<p>Error loading results. Try again.</p>';
+    }
+  }
+
+  async loadSurprisePick(genre, yearStart, yearEnd) {
+    const resultsContainer = document.getElementById('surprise-results');
+    resultsContainer.innerHTML = '<div class="spinner"></div>';
+
+    try {
+      // Simulación de selección aleatoria (puedes conectar con una API real)
+      const randomMovie = await this.fetchRandomMovie(
+        genre,
+        yearStart,
+        yearEnd,
+      );
+      resultsContainer.innerHTML = `
+        <div class="movie-card">
+          <img src="${randomMovie.poster}" alt="${randomMovie.title}">
+          <h4>${randomMovie.title}</h4>
+        </div>
+      `;
+    } catch (error) {
+      console.error('Error loading surprise pick:', error);
+      resultsContainer.innerHTML = '<p>Error loading surprise. Try again.</p>';
+    }
+  }
 }
