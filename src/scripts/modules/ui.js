@@ -207,8 +207,9 @@ export class UIModule {
   }
 
   renderMovieDetailsView(movieData) {
-    const view = this.views.movieDetails;
-    view.innerHTML = `
+    const movieModal = document.getElementById('movie-dialog');
+
+    movieModal.innerHTML = `
             <button id="back-to-event" class="btn btn-secondary">← Back to Event</button>
             
             <div class="movie-details-container">
@@ -544,6 +545,20 @@ export class UIModule {
     commentsList.innerHTML = event.comments
       .map((comment) => this.renderComment(comment))
       .join('');
+  }
+
+  // Generar tarjeta de película
+  generateMovieCard(movie) {
+    return `
+      <div class="movie-card">
+        <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title} poster">
+        <h4>${movie.title}</h4>
+        <div class="movie-meta">
+          <span>⭐ ${movie.vote_average}</span>
+          <span>${new Date(movie.release_date).getFullYear()}</span>
+        </div>
+      </div>
+    `;
   }
 
   openSearchModal() {
