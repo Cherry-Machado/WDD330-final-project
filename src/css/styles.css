@@ -308,7 +308,7 @@ textarea.error {
 .form-actions {
   display: flex;
   gap: 1rem;
-  justify-content: flex-end;
+  justify-content: flex-start;
   margin-top: 1rem;
 }
 
@@ -319,7 +319,7 @@ textarea.error {
 }
 
 .cancel {
-  background: transparent;
+  background: var(--color-accent1);
   border: 2px solid var(--color-accent2);
 }
 
@@ -341,11 +341,9 @@ textarea.error {
   margin-top: -2rem;
   /* Compensar padding superior */
   padding-top: 2rem;
-  background: linear-gradient(
-    to bottom,
-    var(--color-primary) 30px,
-    transparent 30px
-  );
+  background: linear-gradient(to bottom,
+      var(--color-primary) 30px,
+      transparent 30px);
 }
 
 .event-title {
@@ -644,12 +642,10 @@ textarea.error {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    90deg,
-    transparent 25%,
-    rgba(255, 255, 255, 0.1) 50%,
-    transparent 75%
-  );
+  background: linear-gradient(90deg,
+      transparent 25%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 75%);
   background-size: 1000px 100%;
   animation: shimmer 2s infinite;
 }
