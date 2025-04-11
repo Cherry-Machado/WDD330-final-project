@@ -401,6 +401,21 @@ export class UIModule {
   }
 
   // In ui.js
+  renderMyEvents(events) {
+    const eventsGrid = document.querySelector('.events-grid');
+    if (events.length === 0) {
+      document.querySelector('.no-events').style.display = 'block';
+      eventsGrid.innerHTML = '';
+      return;
+    }
+
+    document.querySelector('.no-events').style.display = 'none';
+    eventsGrid.innerHTML = events
+      .map((event) => this.generateEventCard(event))
+      .join('');
+  }
+
+  // In ui.js
   renderMyEventsView() {
     const events = storage.getAllEvents();
     const container = document.querySelector('.events-grid');
@@ -454,5 +469,24 @@ export class UIModule {
     }
 
     return '<span class="status-badge ended">Ended</span>';
+  }
+
+  renderEventDashboard(event) {
+    document.querySelector('.event-title').textContent = event.name;
+    document.querySelector('.event-date').textContent =
+      `🗓️ ${this.formatEventDate(event.date)}`;
+    document.querySelector('.event-time').textContent = `⏰ ${event.time}`;
+
+    // Renderizar películas
+    const moviesGrid = document.querySelector('.movies-grid');
+    moviesGrid.innerHTML = event.movies
+      .map((movie) => this.generateMovieCard(movie))
+      .join('');
+
+    // Renderizar comentarios
+    const commentsList = document.querySelector('.comments-list');
+    commentsList.innerHTML = event.comments
+      .map((comment) => this.renderComment(comment))
+      .join('');
   }
 }

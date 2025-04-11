@@ -32,13 +32,24 @@ export class EventModule {
   }
 
   setupEventListeners() {
-    // Interceptar clics en los enlaces de navegación
+    // Navegación entre vistas
     document.querySelectorAll('.nav-link').forEach((link) => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetId = link.getAttribute('href');
-        this.scrollToSection(targetId);
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        const targetView = link.getAttribute('href').substring(1); // Remove '#' from href
+        ui.renderView(targetView); // Activar vista correspondiente
       });
+    });
+
+    // Botones de la Home Page
+    document
+      .getElementById('create-event-btn')
+      .addEventListener('click', () => {
+        ui.renderView('create-event-view');
+      });
+
+    document.getElementById('join-event-btn').addEventListener('click', () => {
+      ui.renderView('event-view');
     });
 
     // Manejar clics en los botones "View Event" y "Delete Event"
@@ -161,6 +172,31 @@ export class EventModule {
     storage.saveUserPreferences(userPreferences);
   }
 
+  handleCreateEventForm() {
+    const form = document.getElementById('create-event-form');
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const eventData = {
+        name: form['event-name'].value.trim(),
+        date: form['event-date'].value,
+        time: form['event-time'].value,
+        description: form['event-description'].value.trim(),
+      };
+
+      if (!eventData.name || !eventData.date || !eventData.time) {
+        ui.showNotification('Please fill in all required fields.', 'error');
+        return;
+      }
+
+      storage.saveEvent(eventData); // Guardar el evento en almacenamiento local
+      ui.showNotification('Event created successfully!', 'success');
+      ui.renderView('my-events-view');
+    });
+  }
+
+  /*
   handleCreateEventForm(form) {
     // Validate form fields
     const nameField = form.querySelector('#event-name');
@@ -202,6 +238,7 @@ export class EventModule {
     // Show success message
     ui.showNotification('Event created successfully!', 'success');
   }
+    */
 
   handleAddCommentForm(form) {
     const textarea = form.querySelector('textarea');
