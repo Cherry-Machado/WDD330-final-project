@@ -74,6 +74,18 @@ export class EventModule {
       }
     });
 
+    document
+      .getElementById('search-modal-btn')
+      .addEventListener('click', () => {
+        ui.openSearchModal();
+      });
+
+    document
+      .getElementById('surprise-modal-btn')
+      .addEventListener('click', () => {
+        ui.openSurpriseModal();
+      });
+
     // Manejar clics en los botones "View Event" y "Delete Event"
     document.addEventListener('click', (event) => {
       const viewButton = event.target.closest('.view-event');
