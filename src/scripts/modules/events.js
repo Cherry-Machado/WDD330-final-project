@@ -67,10 +67,14 @@ export class EventModule {
     // Manejar el evento de búsqueda de películas
     document.addEventListener('click', (event) => {
       const poster = event.target.closest('.movie-poster');
+      const crearEvent = event.target.closest('#create-event-form');
       if (poster) {
         const movieCard = poster.closest('.movie-card');
         const movieId = movieCard.getAttribute('data-movie-id');
         ui.openMovieModal(movieId); // Llama al método en ui.js
+      }
+      if (crearEvent) {
+        this.handleCreateEventForm(crearEvent);
       }
     });
 
