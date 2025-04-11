@@ -54,7 +54,6 @@ window.addEventListener('unhandledrejection', (event) => {
   );
 });
 
-/*
 // Test API calls
 async function testAPIs() {
   try {
@@ -69,7 +68,6 @@ async function testAPIs() {
 }
 
 testAPIs();
-*/
 
 // Initialize the app
 function init() {
