@@ -63,60 +63,13 @@ export class UIModule {
     });
   }
 
-  // Función modular para generar tarjetas de eventos
-  generateEventCard(event) {
-    // Validar datos del evento
-    if (!event.date || !event.time || !event.participants) {
-      console.warn(`Missing data for event: ${event.id}`);
-      return; // Si faltan datos, no genera la tarjeta
-    }
-
-    const eventCard = document.createElement('article');
-    eventCard.classList.add('event-card');
-    eventCard.setAttribute('data-event-id', event.id);
-
-    eventCard.innerHTML = `
-      ${this.getStatusBadge(event.date, event.time)}
-      <div class="event-card-header">
-        <h3 class="event-title">${event.name}</h3>
-        <div class="event-meta">
-          <span>🗓 ${this.formatEventDate(event.date)}</span>
-          <span>⏰ ${event.time}</span>
-        </div>
-      </div>
-      <div class="event-details">
-        <div class="detail-item">
-          <svg class="detail-icon" viewBox="0 0 24 24">
-            <path fill="currentColor" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
-          </svg>
-          <span>${event.participants.length} participants</span>
-        </div>
-        <div class="detail-item">
-          <svg class="detail-icon" viewBox="0 0 24 24">
-            <path fill="currentColor" d="M5,20V8L12,13L19,8V20H5M12,11L5,6H19L12,11Z"/>
-          </svg>
-          <span>${event.movies.length} suggestions</span>
-        </div>
-      </div>
-      <div class="event-actions">
-        <button class="btn btn-sm view-event" data-event-id="${event.id}">
-          View Event
-        </button>
-        <button class="btn btn-sm delete-event" data-event-id="${event.id}">
-          Delete
-        </button>
-      </div>
-    `;
-    return eventCard;
-  }
-
   renderView(viewName, data) {
     switch (viewName) {
       case 'home':
         this.renderHomeView();
         break;
       case 'createEvent':
-        this.renderCreateEventView(data);
+        this.renderCreateEventView();
         break;
       case 'event':
         this.renderEventView(data);
@@ -204,6 +157,53 @@ export class UIModule {
 
     // Load movie suggestions
     this.loadMovieSuggestions(eventData.id);
+  }
+
+  // Función modular para generar tarjetas de eventos
+  generateEventCard(event) {
+    // Validar datos del evento
+    if (!event.date || !event.time || !event.participants) {
+      console.warn(`Missing data for event: ${event.id}`);
+      return; // Si faltan datos, no genera la tarjeta
+    }
+
+    const eventCard = document.createElement('article');
+    eventCard.classList.add('event-card');
+    eventCard.setAttribute('data-event-id', event.id);
+
+    eventCard.innerHTML = `
+      ${this.getStatusBadge(event.date, event.time)}
+      <div class="event-card-header">
+        <h3 class="event-title">${event.name}</h3>
+        <div class="event-meta">
+          <span>🗓 ${this.formatEventDate(event.date)}</span>
+          <span>⏰ ${event.time}</span>
+        </div>
+      </div>
+      <div class="event-details">
+        <div class="detail-item">
+          <svg class="detail-icon" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+          </svg>
+          <span>${event.participants.length} participants</span>
+        </div>
+        <div class="detail-item">
+          <svg class="detail-icon" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M5,20V8L12,13L19,8V20H5M12,11L5,6H19L12,11Z"/>
+          </svg>
+          <span>${event.movies.length} suggestions</span>
+        </div>
+      </div>
+      <div class="event-actions">
+        <button class="btn btn-sm view-event" data-event-id="${event.id}">
+          View Event
+        </button>
+        <button class="btn btn-sm delete-event" data-event-id="${event.id}">
+          Delete
+        </button>
+      </div>
+    `;
+    return eventCard;
   }
 
   renderMovieDetailsView(movieData) {
