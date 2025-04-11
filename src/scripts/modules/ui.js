@@ -116,13 +116,13 @@ export class UIModule {
         this.renderHomeView();
         break;
       case 'createEvent':
-        this.renderCreateEventView();
+        this.renderCreateEventView(data);
         break;
       case 'event':
         this.renderEventView(data);
         break;
-      case 'movieDetails':
-        this.renderMovieDetailsView(data);
+      case 'my-events':
+        this.renderMyEvents(data);
         break;
       default:
         console.error(`Unknown view: ${viewName}`);
