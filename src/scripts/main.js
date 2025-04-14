@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // const inicio = new App1();
   //  inicio(); // Inicializar la aplicación
   const ui = new UIModule(); // Instancia del módulo de interfaz
+  ui.initTextRotation();
+  ui.initParallax();
   setupCreateEventForm(); // Configurar el formulario
   ui.loadView('home-view'); // Cargar la vista inicial
 

@@ -5,24 +5,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
-    content="Plan the perfect movie night with Movie Night Planner. Organize events, get movie recommendations, and more!">
+    content="Byu-I Project. Plan the perfect movie night with Movie Night Planner. Organize events, get movie recommendations, and more!">
   <meta name="keywords" content="movie night, movie planner, movie events, movies, entertainment">
-  <meta name="author" content="Your Name">
+  <meta name="author" content="Cherry Machado">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
-  <title>Movie Night Planner</title>
+  <title>Movie Night Mayhem</title>
   <link rel="stylesheet" href="./src/css/styles.css">
   <script type="module" src="./src/scripts/main.js" defer></script>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 
 <body>
-  <!--<a class="skip-link" href="#main-content">Jump principal content</a>-->
   <header>
     <div class="header-container">
       <div class="logo">
         <i class="fas fa-film" aria-hidden="true"></i>
-        <span>Movie Night Planner</span>
+        <span>Movie Night Mayhem</span>
       </div>
 
       <nav aria-label="Navegación principal">
@@ -50,8 +49,28 @@
   <main id="main-content">
     <!-- Home View -->
     <section id="home-view" class="view" aria-labelledby="home-heading">
-      <h1 id="home-heading">Welcome to Movie Night Planner</h1>
-      <button id="create-event-btn" aria-label="Create a New Event">Create a New Event</button>
+      <section id="hero" class="full-width">
+        <div class="hero-container">
+          <div class="hero-content">
+            <h1 class="hero-title">Welcome to <span class="highlight">Movie Night Mayhem</span></h1>
+            <p class="hero-subtitle">Turn ordinary nights into <span class="text-rotate">and </span> with
+              friends</p>
+            <div class="hero-buttons">
+              <a href="#create-event-view" class="btn btn-primary pulse">Create an Event</a>
+              <a href="#event-view" class="btn btn-secondary">Join an Event</a>
+            </div>
+          </div>
+          <div class="hero-media">
+            <img
+              src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExejlmbjQxYWhiZHQ1bHgzczQ2cHBhejhoYTNqZjB5b2x5MXVkZjd2aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/4gE5sLxeVvYLHDQvvP/giphy.gif"
+              alt="Animated movie night collage" class="hero-gif">
+          </div>
+        </div>
+        <div class="scrolldown-indicator">
+          <span>Explore</span>
+          <div class="arrow"></div>
+        </div>
+      </section>
     </section>
 
     <!-- Create Event View -->

@@ -44,6 +44,9 @@ export class UIModule {
     this.setupEventListeners2();
     this.loadInitialView();
     this.setupMobileMenu();
+    this.heroSection = document.getElementById('hero'); // Sección principal
+    this.iniTextRotation();
+    this.initParallax();
     this.searchResults = document.getElementById('search-results');
 
     this.detailsModal = document.getElementById('details-modal'); // Modal de detalles
@@ -70,6 +73,35 @@ export class UIModule {
     this.closeSearchModalBtn = document.getElementById('close-search-modal'); // Botón para cerrar el modal
     document.querySelector('.close-btn').addEventListener('click', () => {
       this.movieDialog.close();
+    });
+  }
+
+  // Rotación de texto en el subtítulo
+  initTextRotation() {
+    const words = [
+      'epic adventures',
+      'unforgettable memories',
+      'cinematic experiences',
+      'legendary nights',
+    ];
+    let currentIndex = 0;
+    const textElement = document.querySelector('.text-rotate');
+
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % words.length;
+      textElement.style.animation = 'none';
+      void textElement.offsetWidth; // Trigger reflow
+      textElement.style.animation = 'textRotate 1s ease-out';
+      textElement.textContent = words[currentIndex];
+    }, 3000);
+  }
+
+  // Efecto parallax para el hero
+  initParallax() {
+    const hero = document.getElementById('hero');
+    window.addEventListener('scroll', () => {
+      const scrollPosition = window.pageYOffset;
+      hero.style.backgroundPositionY = `${scrollPosition * 0.5}px`;
     });
   }
 
