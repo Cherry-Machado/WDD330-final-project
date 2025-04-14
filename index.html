@@ -44,34 +44,31 @@
         <li><a href="#home-view">Home</a></li>
       </ol>
     </nav>
+  
   </header>
 
   <main id="main-content">
     <!-- Home View -->
-
-
-    <section id="home-view" class="view" aria-labelledby="home-heading"></section>
-    <section id="hero" class="full-width"></section>
-    <div class="hero-container">
-      <div class="hero-content">
-        <h1 class="hero-title">Welcome to <span class="highlight">Movie Night Mayhem</span></h1>
-        <p class="hero-subtitle">Turn ordinary nights into <span class="text-rotate">and </span> with friends</p>
-        <div class="hero-buttons">
-          <a href="#create-event-view" class="btn btn-primary pulse">Create an Event</a>
-          <a href="#event-view" class="btn btn-secondary">Join an Event</a>
+    <section id="home-view" class="view hero" aria-labelledby="home-heading">
+      <div class="hero-container">
+        <div class="hero-content">
+          <h1 class="hero-title">Welcome to <span class="highlight">Movie Night Mayhem</span></h1>
+          <p class="hero-subtitle">Turn ordinary nights into <span class="text-rotate">and </span> with friends</p>
+          <div class="hero-buttons">
+            <a href="#create-event-view" class="btn btn-primary pulse">Create an Event</a>
+            <a href="#event-view" class="btn btn-secondary">Join an Event</a>
+          </div>
+        </div>
+        <div class="hero-media">
+          <img
+            src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExejlmbjQxYWhiZHQ1bHgzczQ2cHBhejhoYTNqZjB5b2x5MXVkZjd2aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/4gE5sLxeVvYLHDQvvP/giphy.gif"
+            alt="Animated movie night collage" class="hero-gif">
         </div>
       </div>
-      <div class="hero-media">
-        <img
-          src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExejlmbjQxYWhiZHQ1bHgzczQ2cHBhejhoYTNqZjB5b2x5MXVkZjd2aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/4gE5sLxeVvYLHDQvvP/giphy.gif"
-          alt="Animated movie night collage" class="hero-gif">
+      <div class="scrolldown-indicator">
+        <span>Explore</span>
+        <div class="arrow"></div>
       </div>
-    </div>
-    <div class="scrolldown-indicator">
-      <span>Explore</span>
-      <div class="arrow"></div>
-    </div>
-    </section>
     </section>
 
     <!-- Create Event View -->
@@ -115,17 +112,21 @@
 
     <!-- Event View -->
     <section id="event-view" class="view" aria-labelledby="event-heading">
-      <h2 id="event-heading">Upcoming Events</h2>
-      <div id="events-list" aria-live="polite"></div>
-      <div id="event-grid"></div>
-      <button id="search-modal-btn" aria-label="Search for Movies">Search Movies</button>
-      <button id="surprise-modal-btn" aria-label="Get a Movie Suggestion">Surprise Me</button>
+      <div class="event-container">
+        <h2 id="event-heading">Upcoming Events</h2>
+        <div id="events-list" aria-live="polite"></div>
+        <div id="event-grid"></div>
+        <button id="search-modal-btn" aria-label="Search for Movies">Search Movies</button>
+        <button id="surprise-modal-btn" aria-label="Get a Movie Suggestion">Surprise Me</button>
+      </div>
     </section>
 
     <!-- My Events View -->
     <section id="my-events-view" class="view" aria-labelledby="my-events-heading">
-      <h2 id="my-events-heading">My Events</h2>
-      <div id="my-events-list"></div>
+      <div class="my-event-container">
+        <h2 id="my-events-heading">My Events</h2>
+        <div id="my-events-list"></div>
+      </div>
     </section>
 
     <!-- Modals -->
