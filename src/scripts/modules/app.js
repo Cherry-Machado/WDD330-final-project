@@ -1,4 +1,4 @@
-export class App {
+export class App1 {
   constructor() {
     // Mapeo de vistas y sus títulos para el breadcrumb
     this.views = {
