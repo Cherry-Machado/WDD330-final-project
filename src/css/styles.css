@@ -424,6 +424,7 @@ main {
 }
 
 @keyframes bounce {
+
   0%,
   20%,
   50%,
@@ -757,11 +758,9 @@ button:hover {
   letter-spacing: 0.5px;
   text-shadow: 0 1px 2px black;
   box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
-  background: linear-gradient(
-    135deg,
-    var(--accent-color),
-    var(--secondary-color)
-  );
+  background: linear-gradient(135deg,
+      var(--accent-color),
+      var(--secondary-color));
   background-size: 200% 200%;
   animation: gradient 5s ease infinite;
   background-position: 0% 50%;
@@ -795,13 +794,14 @@ button:hover {
   background-color: #fef2f2;
 }
 
-.form-group input:invalid:not(:placeholder-shown) + small,
-.form-group textarea:invalid:not(:placeholder-shown) + small {
+.form-group input:invalid:not(:placeholder-shown)+small,
+.form-group textarea:invalid:not(:placeholder-shown)+small {
   color: #ef4444;
 }
 
 /* Animaciones */
 @keyframes shake {
+
   0%,
   100% {
     transform: translateX(0);
@@ -824,8 +824,8 @@ button:hover {
 }
 
 /* Estilo para campos requeridos */
-.form-group input[required] + label::after,
-.form-group textarea[required] + label::after {
+.form-group input[required]+label::after,
+.form-group textarea[required]+label::after {
   content: ' *';
   color: #ef4444;
 }
@@ -931,7 +931,8 @@ button:hover {
 @media (max-width: 992px) {
   .hero-container {
     flex-direction: column;
-    text-align: center;
+    flex-wrap: nowrap;
+    height: fit-content;
   }
 
   .hero-title {
