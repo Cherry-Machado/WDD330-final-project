@@ -162,7 +162,6 @@ nav a.active {
   text-decoration: underline;
 }
 
-
 /* One Page Layout */
 main {
   max-width: 1200px;
@@ -242,9 +241,6 @@ section {
 #events {
   background: var(--accent-purple);
 }
-
-
-
 
 /* Buttons */
 button {
@@ -482,7 +478,7 @@ button:hover {
 }
 
 /* Botón de enviar */
-#create-event-form button[type="submit"] {
+#create-event-form button[type='submit'] {
   width: 100%;
   padding: 1rem;
   background: #4f46e5;
@@ -497,17 +493,17 @@ button:hover {
   letter-spacing: 0.5px;
 }
 
-#create-event-form button[type="submit"]:hover {
+#create-event-form button[type='submit']:hover {
   background: #4338ca;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
 }
 
-#create-event-form button[type="submit"]:active {
+#create-event-form button[type='submit']:active {
   transform: translateY(0);
 }
 
-#create-event-form button[type="submit"]:focus {
+#create-event-form button[type='submit']:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.4);
 }
@@ -525,14 +521,13 @@ button:hover {
   background-color: #fef2f2;
 }
 
-.form-group input:invalid:not(:placeholder-shown)+small,
-.form-group textarea:invalid:not(:placeholder-shown)+small {
+.form-group input:invalid:not(:placeholder-shown) + small,
+.form-group textarea:invalid:not(:placeholder-shown) + small {
   color: #ef4444;
 }
 
 /* Animaciones */
 @keyframes shake {
-
   0%,
   100% {
     transform: translateX(0);
@@ -555,8 +550,8 @@ button:hover {
 }
 
 /* Estilo para campos requeridos */
-.form-group input[required]+label::after,
-.form-group textarea[required]+label::after {
+.form-group input[required] + label::after,
+.form-group textarea[required] + label::after {
   content: ' *';
   color: #ef4444;
 }
@@ -581,7 +576,7 @@ button:hover {
     padding: 0.75rem;
   }
 
-  #create-event-form button[type="submit"] {
+  #create-event-form button[type='submit'] {
     padding: 0.85rem;
   }
 }
