@@ -1,90 +1,16 @@
-// Import modules
 import { UIModule } from './modules/ui.js';
-import { EventModule } from './modules/events.js';
-import { StorageModule } from './modules/storage.js';
-import { AnimationModule } from './modules/animations.js';
-import { TMDBApi } from './api/tmdb.js';
-import { OMDBApi } from './api/omdb.js';
+import { EventsModule } from './modules/events.js';
+import { setupCreateEventForm } from './modules/form-handler.js';
+import { App } from './modules/app.js';
 
-// Initialize modules
-const ui = new UIModule();
-const events = new EventModule();
-const storage = new StorageModule();
-const animations = new AnimationModule();
-const tmdbApiKey = import.meta.env.VITE_TMDB_API_KEY;
-const omdbApiKey = import.meta.env.VITE_OMDB_API_KEY;
-const tmdbApi = new TMDBApi(tmdbApiKey);
-const omdbApi = new OMDBApi(omdbApiKey);
+document.addEventListener('DOMContentLoaded', () => {
+  // Inicializar la aplicación cuando el DOM esté listo
+  const inicio = new App();
+  inicio(); // Inicializar la aplicación
+  const ui = new UIModule(); // Instancia del módulo de interfaz
+  setupCreateEventForm(); // Configurar el formulario
+  ui.loadView('home-view'); // Cargar la vista inicial
 
-// App state
-const state = {
-  currentView: 'home-view',
-  currentEvent: null,
-  userPreferences: storage.getUserPreferences() || {
-    preferredGenres: [],
-    recentlyViewed: [],
-  },
-};
-
-// Export modules and state for debugging
-window.app = {
-  ui,
-  events,
-  storage,
-  animations,
-  tmdbApi,
-  omdbApi,
-  state,
-};
-
-// Test API calls
-
-async function testAPIs() {
-  try {
-    const tmdbMovies = await tmdbApi.searchMovies('Inception');
-    console.log('TMDb Movies:', tmdbMovies);
-
-    const omdbMovie = await omdbApi.getMovieDetails('tt1375666'); // Ejemplo de ID de IMDb
-    console.log('OMDb Movie Details:', omdbMovie);
-  } catch (error) {
-    console.error('Error testing APIs:', error);
-  }
-}
-
-testAPIs();
-
-// Start the app when DOM is loaded
-document.addEventListener('DOMContentLoaded', init);
-
-// Handle theme toggle
-
-// Error handling
-window.addEventListener('error', (event) => {
-  console.error('Global error:', event.error);
-  ui.showNotification(
-    'An unexpected error occurred. Please try again.',
-    'error',
-  );
+  const events = new EventsModule(ui); // Instancia del módulo de eventos con ui inyectado
+  events.setupEventListeners(); // Invocar su funcionalidad directamente
 });
-
-window.addEventListener('unhandledrejection', (event) => {
-  console.error('Unhandled rejection:', event.reason);
-  ui.showNotification(
-    'A network error occurred. Please check your connection.',
-    'error',
-  );
-});
-
-// Initialize the app
-function init() {
-  // Set up event listeners
-  events.setupEventListeners();
-
-  // Load initial view
-  ui.loadView(state.currentView);
-
-  // Apply any saved user preferences
-  if (state.userPreferences.theme === 'dark') {
-    document.body.classList.add('dark-theme');
-  }
-}

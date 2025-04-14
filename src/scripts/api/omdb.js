@@ -61,5 +61,21 @@ export class OMDBApi {
     const rt = ratings?.find((r) => r.Source === 'Rotten Tomatoes');
     return rt ? rt.Value : 'N/A';
   }
+
+  async getPopularMovies(query, page = 1) {
+    const url = `${this.baseUrl}/?apikey=${this.apiKey}&s=${encodeURIComponent(query)}&page=${page}`;
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`OMDb API error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    if (data.Response === 'False') {
+      throw new Error();
+    }
+
+    return data;
+  }
 }
 //Export  OMDBApi class

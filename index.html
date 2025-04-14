@@ -1,241 +1,187 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta property="og:title" content="Movie Night Mayhem - WDD330 Final Project" />
-  <meta property="og:description"
-    content="Collaborative movie selection tool for groups with voting and scheduling features" />
-  <meta property="og:image" content="assets/images/Flag_of_Venezuela.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Movie Night Mayhem - WDD330 Final Project" />
-  <meta name="author" content="Cherry Machado" />
-  <title>Movie Night Mayhem</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Plan the perfect movie night with Movie Night Planner. Organize events, get movie recommendations, and more!">
+  <meta name="keywords" content="movie night, movie planner, movie events, movies, entertainment">
+  <meta name="author" content="Your Name">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Merriweather:wght@400;700&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="src/css/styles.css" />
-  <link rel="stylesheet" href="src/css/animations.css" />
-  <script type="module" src="src/scripts/main.js"></script>
+  <title>Movie Night Planner</title>
+  <link rel="stylesheet" href="./src/css/styles.css">
+  <script type="module" src="./src/scripts/main.js" defer></script>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 
 <body>
-  <header class="main-header">
-    <div class="container">
-      <h1 class="logo">Movie Night Mayhem</h1>
-      <nav class="main-nav">
-        <button id="menu-toggle" aria-label="Toggle navigation menu">
-          ☰
+  <!--<a class="skip-link" href="#main-content">Jump principal content</a>-->
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <i class="fas fa-film" aria-hidden="true"></i>
+        <span>Movie Night Planner</span>
+      </div>
+
+      <nav aria-label="Navegación principal">
+        <button class="menu-toggle" aria-expanded="false" aria-controls="main-menu">
+          <span class="sr-only">Menú</span>
+          <i class="fas fa-bars" aria-hidden="true"></i>
         </button>
-        <ul id="nav-menu">
-          <li><a href="#home-view" class="nav-link">Home</a></li>
-          <li>
-            <a href="#create-event-view" class="nav-link">Create Event</a>
-          </li>
-          <li><a href="#event-view" class="nav-link">Join Event</a></li>
-          <li><a href="#my-events-view" class="nav-link">My Events</a></li>
+
+        <ul id="main-menu">
+          <li><a href="#home-view" id="home-link" class="nav-link" aria-current="page">Home</a></li>
+          <li><a href="#create-event-view" id="create-event-link" class="nav-link">Create Event</a></li>
+          <li><a href="#event-view" id="event-link" class="nav-link">Events</a></li>
+          <li><a href="#my-events-view" id="my-events-link" class="nav-link">My Events</a></li>
         </ul>
       </nav>
     </div>
+
+    <nav aria-label="Migajas de pan" class="breadcrumb">
+      <ol>
+        <li><a href="#home-view">Home</a></li>
+      </ol>
+    </nav>
   </header>
-  <main class="container">
-    <section id="home-view" class="view active">
-      <div class="hero">
-        <div class="hero-content">
-          <h2 class="hero-title">Plan the Perfect Movie Night</h2>
-          <p class="hero-subtitle">Stop the debates - start watching!</p>
-          <div class="cta-container">
-            <button class="cta-btn primary" id="create-event-btn">
-              <span class="icon">🎬</span>
-              Create New Event
-            </button>
-            <button class="cta-btn secondary" id="join-event-btn">
-              <span class="icon">🎟️</span>
-              Join Existing Event
-            </button>
-          </div>
-        </div>
-        <div class="hero-illustration">
-          <div class="popcorn"></div>
-          <div class="film-strip"></div>
-        </div>
-      </div>
+
+  <main id="main-content">
+    <!-- Home View -->
+    <section id="home-view" class="view" aria-labelledby="home-heading">
+      <h1 id="home-heading">Welcome to Movie Night Planner</h1>
+      <button id="create-event-btn" aria-label="Create a New Event">Create a New Event</button>
     </section>
 
-    <section id="create-event-view" class="view">
-      <div class="form-container">
-        <h2 class="form-title">Create New Event</h2>
-        <form id="create-event-form" class="event-form">
-          <div class="form-group">
-            <label for="event-name">Event Name</label>
-            <input type="text" id="event-name" name="event-name" placeholder="Friday Flick Fest" required />
-          </div>
-          <div class="datetime-group">
-            <div class="form-group">
-              <label for="event-date">Event Date</label>
-              <input type="date" id="event-date" name="event-date" required />
+    <!-- Create Event View -->
+    <section id="create-event-view" class="view" aria-labelledby="create-event-heading">
+      <h2 id="create-event-heading">Create a Movie Night Event</h2>
+      <form id="create-event-form">
+        <div class="form-group">
+          <label for="event-name">Event Name</label>
+          <input type="text" id="event-name" name="eventName" placeholder="e.g., Friday Movie Night"
+            title="Enter the name of your event" required minlength="3" aria-required="true"
+            aria-describedby="event-name-help">
+          <small id="event-name-help">Event name must be at least 3 characters long.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="event-date">Event Date</label>
+          <input type="date" id="event-date" name="eventDate" title="Select a date for your event" required
+            aria-required="true">
+        </div>
+
+        <div class="form-group">
+          <label for="event-time">Event Time</label>
+          <input type="time" id="event-time" name="eventTime" title="Select a time for your event" required
+            aria-required="true">
+        </div>
+
+        <div class="form-group">
+          <label for="event-description">Description (Optional)</label>
+          <textarea id="event-description" name="eventDescription" placeholder="Add details about your event..."
+            title="Provide additional information for your event">
+            </textarea>
+        </div>
+        <div class="form-group">
+          <label for="event-password">Event Password (4 digits):</label>
+          <input type="password" id="event-password" name="eventPassword" minlength="4" maxlength="4" pattern="\d{4}"
+            required />
+        </div>
+        <button type="submit" aria-label="Save Event">Save Event</button>
+      </form>
+    </section>
+
+    <!-- Event View -->
+    <section id="event-view" class="view" aria-labelledby="event-heading">
+      <h2 id="event-heading">Upcoming Events</h2>
+      <div id="events-list" aria-live="polite"></div>
+      <div id="event-grid"></div>
+      <button id="search-modal-btn" aria-label="Search for Movies">Search Movies</button>
+      <button id="surprise-modal-btn" aria-label="Get a Movie Suggestion">Surprise Me</button>
+    </section>
+
+    <!-- My Events View -->
+    <section id="my-events-view" class="view" aria-labelledby="my-events-heading">
+      <h2 id="my-events-heading">My Events</h2>
+      <div id="my-events-list"></div>
+    </section>
+
+    <!-- Modals -->
+    <dialog id="search-modal" aria-labelledby="search-modal-heading">
+      <h3 id="search-modal-heading">Search Movies</h3>
+
+      <form id="search-form">
+        <input type="text" id="search-input" placeholder="Enter movie title" required aria-required="true">
+        <button type="submit">Search</button>
+        <button type="button" id="close-search-modal" aria-label="Close Search Modal">Close</button>
+      </form>
+
+      <div id="search-results"></div>
+      <dialog id="movie-dialog" class="movie-modal">
+        <div class="modal-content">
+          <button class="close-btn" aria-label="Close">×</button>
+          <div class="movie-main">
+            <div class="movie-poster">
+              <img src="placeholder.jpg" alt="Movie poster" id="movie-poster">
             </div>
-            <div class="form-group">
-              <label for="event-time">Event Time</label>
-              <input type="time" id="event-time" name="event-time" required />
+            <div class="movie-info">
+              <h2 class="movie-title" id="movie-title">Movie Title <span class="year">(2023)</span></h2>
+              <div class="movie-meta" id="movie-meta"></div>
+              <p class="movie-plot" id="movie-plot"></p>
+              <div class="cast-grid" id="cast-grid"></div>
+              <div class="action-buttons">
+                <button class="btn trailer-btn" id="trailer-btn">▶️ Play Trailer</button>
+              </div>
             </div>
           </div>
-          <div class="form-group">
-            <label for="event-description">Event Description</label>
-            <textarea id="event-description" name="event-description" placeholder="Describe your event"
-              required></textarea>
-          </div>
-          <div class="form-actions">
-            <button type="submit" class="btn submit">Create Event</button>
-            <button type="button" class="btn cancel">Cancel</button>
-          </div>
-        </form>
-      </div>
-    </section>
-
-    <section id="event-view" class="view">
-      <header class="event-header">
-        <h2 class="event-title">Friday Flick Fest</h2>
-        <div class="event-meta">
-          <span class="event-date">🗓️ October 27, 2023</span>
-          <span class="event-time">⏰ 7:30 PM</span>
         </div>
-      </header>
+      </dialog>
 
-      <div class="dashboard-grid">
-        <!-- Movie Suggestions Column -->
-        <div class="movies-column">
-          <div class="section-header">
-            <h3>Movie Suggestions</h3>
-            <button class="btn add-movie" id="suggest-movie-btn">
-              ＋ Suggest Movie
-            </button>
-          </div>
-          <div class="movies-grid">
-            <!-- Movie cards will be injected here -->
-          </div>
-        </div>
+    </dialog>
 
-        <!-- Comments Column -->
-        <div class="comments-column">
-          <div class="section-header">
-            <h3>Discussion</h3>
-          </div>
-          <div class="comments-list">
-            <!-- Comments will be injected here -->
-          </div>
-          <form class="comment-form">
-            <textarea placeholder="Add your comment..."></textarea>
-            <button type="submit" class="btn submit">Post</button>
-          </form>
-        </div>
-      </div>
-
-      <button id="search-modal-btn" class="btn btn-primary">Search Movies</button>
-      <button id="surprise-modal-btn" class="btn btn-secondary">Surprise Me</button>
-
-    </section>
-
-    <!--My Events Section-->
-    <section id="my-events-view" class="view">
-      <div class="events-header">
-        <h2>My Movie Nights</h2>
-        <button class="btn new-event-btn" id="new-event-btn">
-          ＋ New Event
-        </button>
-      </div>
-
-
-      <div class="events-grid"></div>
-
-      <div class="no-events">
-        <img src="assets/images/popcorn.png" alt="No events" class="empty-state" />
-        <p>No events found. Start by creating a new movie night!</p>
-      </div>
-    </section>
+    <dialog id="surprise-modal" aria-labelledby="surprise-modal-heading">
+      <h3 id="surprise-modal-heading">Surprise Me</h3>
+      <p>Select criteria for random movie suggestion!</p>
+      <button id="close-surprise-modal" aria-label="Close Surprise Modal">Close</button>
+    </dialog>
   </main>
-
-  <!--Dialog Modals-->
   <dialog id="movie-dialog" class="movie-modal">
     <div class="modal-content">
       <button class="close-btn" aria-label="Close">×</button>
       <div class="movie-main">
         <div class="movie-poster">
-          <img src="placeholder.jpg" alt="Movie poster">
+          <img src="placeholder.jpg" alt="Movie poster" id="movie-poster">
         </div>
         <div class="movie-info">
-          <h2 class="movie-title">Movie Title <span class="year">(2023)</span></h2>
-          <div class="movie-meta">
-            <span class="rating">⭐ 8.5/10</span>
-            <span class="duration">⏳ 2h 15m</span>
-            <span class="genre">🎭 Action, Adventure</span>
+          <h2 class="movie-title" id="movie-title">Movie Title <span class="year">(2023)</span></h2>
+          <div class="movie-meta" id="movie-meta">
+            <span class="rating">⭐ IMDb Rating</span>
+            <span class="duration">⏳ Release Date</span>
+            <span class="genre">🎭 Genre</span>
           </div>
-          <p class="movie-plot">Movie plot description goes here...</p>
+          <p class="movie-plot" id="movie-plot">Movie plot description goes here...</p>
           <div class="action-buttons">
-            <button class="btn vote-btn">👍 Vote for this Movie</button>
-            <button class="btn trailer-btn">▶️ Play Trailer</button>
+            <button class="btn vote-btn" id="vote-btn">👍 Vote for this Movie</button>
+            <button class="btn trailer-btn" id="trailer-btn">▶️ Play Trailer</button>
           </div>
         </div>
       </div>
       <div class="movie-extra">
         <h3>Cast</h3>
-        <div class="cast-grid">
+        <div class="cast-grid" id="cast-grid">
           <!-- Cast members -->
         </div>
       </div>
     </div>
   </dialog>
-
-
-  <!--Movie Search Modal-->
-  <dialog id="search-modal" class="search-modal">
-    <div class="search-header">
-      <h3>Search Movies</h3>
-      <div class="search-bar">
-        <input type="text" placeholder="Search movies...">
-        <button class="search-btn">🔍</button>
-      </div>
-    </div>
-    <div class="search-results">
-      <!-- Results injected here -->
-    </div>
-  </dialog>
-
-  <!--Surprise Me Modal-->
-  <dialog id="surprise-modal" class="surprise-modal">
-    <div class="surprise-content">
-      <h3>Surprise Me!</h3>
-      <form class="surprise-form">
-        <div class="filter-group">
-          <label>Genre</label>
-          <div class="genre-grid">
-            <!-- Genre checkboxes -->
-          </div>
-        </div>
-
-        <div class="filter-group">
-          <label>Release Year</label>
-          <div class="year-range">
-            <input type="range" min="1920" max="2025" value="2020">
-            <output>2020-2025</output>
-          </div>
-        </div>
-
-        <button type="submit" class="spin-btn">
-          🎰 Spin the Wheel!
-        </button>
-      </form>
-    </div>
-  </dialog>
-
-
   <footer class="footer">
     <div class="footer__content">
-      <p>©2025 Movie Night Mayhem 🍒 Cherry Machado 🍒 Venezuela</p>
-      <img src="./assets/images/Flag_of_Venezuela.png" alt="Venezuela" loading="lazy" />
+      <p>©2025 🍒 Cherry Machado 🍒 Venezuela</p>
+      <img src="./src/assets/images/Flag_of_Venezuela.png" alt="Venezuela" loading="lazy" />
     </div>
+
   </footer>
 </body>
 
