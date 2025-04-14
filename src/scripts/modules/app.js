@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 export class App {
   constructor() {
     // Mapeo de vistas y sus títulos para el breadcrumb
@@ -38,7 +37,7 @@ export class App {
 
     // Inicializar
     this.initNavigation();
-    this.setupEventListeners();
+    this.setupEventListeners2();
     this.loadInitialView();
     this.setupMobileMenu();
   }
@@ -61,14 +60,14 @@ export class App {
     const viewName = window.location.hash.replace('#', '') || defaultView;
 
     if (this.views[viewName]) {
-      this.loadView(viewName);
+      this.loadView2(viewName);
     } else {
-      this.loadView(defaultView);
+      this.loadView2(defaultView);
     }
   }
 
   // Cargar una vista específica
-  loadView(viewName) {
+  loadView2(viewName) {
     // Ocultar todas las vistas
     Object.values(this.views).forEach((view) => {
       view.element.classList.remove('active');
@@ -141,17 +140,17 @@ export class App {
       link.addEventListener('click', (e) => {
         e.preventDefault();
         const viewName = this.navLinks[link.id];
-        this.loadView(viewName);
+        this.loadView2(viewName);
       });
     });
   }
 
   // Configurar listeners para cambios en el hash
-  setupEventListeners() {
+  setupEventListeners2() {
     window.addEventListener('hashchange', () => {
       const viewName = window.location.hash.replace('#', '');
       if (this.views[viewName]) {
-        this.loadView(viewName);
+        this.loadView2(viewName);
       }
     });
   }
