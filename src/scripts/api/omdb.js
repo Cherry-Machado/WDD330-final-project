@@ -1,7 +1,8 @@
 export class OMDBApi {
   constructor(apiKey) {
     this.apiKey = apiKey;
-    this.baseUrl = 'https://www.omdbapi.com';
+    const omdURL = import.meta.env.VITE_OMDB_API_URL;
+    this.baseUrl = omdURL;
   }
 
   async searchMovies(query, page = 1) {

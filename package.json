@@ -10,8 +10,7 @@
   },
   "eslintConfig": {
     "extends": [
-      "eslint:recommended",
-      "plugin:prettier/recommended"
+      "eslint:recommended"
     ],
     "env": {
       "browser": true,
@@ -41,8 +40,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint src/scripts/**/*.js",
-    "format": "prettier --write src/**/*.{js,jsx,ts,tsx,json,css,scss,html}",
-    "prepare": "husky install"
+    "format": "prettier --write src/**/*.{js,jsx,ts,tsx,json,css,scss,html}"
   },
   "devDependencies": {
     "@eslint/compat": "^1.2.8",
@@ -55,7 +53,7 @@
     "globals": "^16.0.0",
     "prettier": "^3.5.3",
     "terser": "^5.39.0",
-    "vite": "^6.2.5"
+    "vite": "^6.3.1"
   },
   "dependencies": {
     "path": "^0.12.7"

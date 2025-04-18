@@ -1,7 +1,5 @@
 import { StorageModule } from './storage.js';
 import { OMDBApi } from '../api/omdb.js';
-// Initialize modules
-const omdbApiKey = import.meta.env.VITE_OMDB_API_KEY;
 
 export class UIModule {
   constructor() {
@@ -24,7 +22,15 @@ export class UIModule {
         title: 'My Events',
       },
     };
-    // Enlaces de navegación
+
+    // Enlaces de navegación apuntan directamente a los elementos
+    /*this.navLinks = {
+      'home-link': this.views['home-view'],
+      'create-event-link': this.views['create-event-view'],
+      'event-link': this.views['event-view'],
+      'my-events-link': this.views['my-events-view'],
+    };*/
+
     this.navLinks = {
       'home-link': 'home-view',
       'create-event-link': 'create-event-view',
@@ -41,22 +47,19 @@ export class UIModule {
 
     // Inicializar
     this.initNavigation();
-    this.setupEventListeners2();
-    this.loadInitialView();
+    //this.loadInitialView();
     this.setupMobileMenu();
     this.heroSection = document.getElementById('hero'); // Sección principal
-    this.iniTextRotation();
-    this.initParallax();
     this.searchResults = document.getElementById('search-results');
 
     this.detailsModal = document.getElementById('details-modal'); // Modal de detalles
-    this.omdbApi = new OMDBApi(omdbApiKey); // Instanciamos la API de OMDB
     this.modals = {
       search: document.getElementById('search-modal'),
       surprise: document.getElementById('surprise-modal'),
     };
     this.myEventsContainer = document.getElementById('event-grid'); // Contenedor de eventos
-    this.renderEventGrid(); // Mostrar eventos guardados al iniciar
+    this.omdbApi = new OMDBApi(import.meta.env.VITE_OMDB_API_KEY); // Instancia de OMDBApi
+    //this.renderEventGrid(); // Mostrar eventos guardados al iniciar
     this.movieDialog = document.getElementById('movie-dialog');
     this.poster = document.getElementById('movie-poster');
     this.title = document.getElementById('movie-title');
@@ -92,16 +95,16 @@ export class UIModule {
       textElement.style.animation = 'none';
       void textElement.offsetWidth; // Trigger reflow
       textElement.style.animation = 'textRotate 1s ease-out';
-      textElement.textContent = words[currentIndex];
-    }, 3000);
+      textElement.textContent = `, ${words[currentIndex]} and `;
+    }, 4000);
   }
 
   // Efecto parallax para el hero
   initParallax() {
-    const hero = document.getElementById('hero');
+    const hero = document.querySelector('.hero');
     window.addEventListener('scroll', () => {
-      const scrollPosition = window.pageYOffset;
-      hero.style.backgroundPositionY = `${scrollPosition * 0.5}px`;
+      const scrollPosition = window.scrollY;
+      hero.style.backgroundPositionY = `${scrollPosition * 0.5}`;
     });
   }
 
@@ -118,19 +121,19 @@ export class UIModule {
   }
 
   // Cargar vista inicial basada en el hash de la URL
-  loadInitialView() {
+  /*loadInitialView() {
     const defaultView = 'home-view';
     const viewName = window.location.hash.replace('#', '') || defaultView;
 
     if (this.views[viewName]) {
-      this.loadView2(viewName);
+      this.loadView(viewName);
     } else {
-      this.loadView2(defaultView);
+      this.loadView(defaultView);
     }
-  }
+  }*/
 
   // Cargar una vista específica
-  loadView2(viewName) {
+  loadView(viewName) {
     // Ocultar todas las vistas
     Object.values(this.views).forEach((view) => {
       view.element.classList.remove('active');
@@ -138,8 +141,14 @@ export class UIModule {
     });
 
     // Mostrar la vista seleccionada
-    this.views[viewName].element.classList.add('active');
-    this.views[viewName].element.removeAttribute('hidden');
+    if (this.views && this.views[viewName] && this.views[viewName].element) {
+      this.views[viewName].element.classList.add('active');
+      this.views[viewName].element.removeAttribute('hidden');
+    } else {
+      console.error(
+        `View "${viewName}" no está definida o no tiene la propiedad 'element'.`,
+      );
+    }
 
     // Actualizar URL
     window.location.hash = viewName;
@@ -198,34 +207,30 @@ export class UIModule {
 
   // Inicializar navegación
   initNavigation() {
-    // Manejar clic en enlaces de navegación
     document.querySelectorAll('.nav-link').forEach((link) => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
         const viewName = this.navLinks[link.id];
-        this.loadView2(viewName);
+        if (viewName) {
+          console.log(`Navegando a la vista: ${viewName}`);
+          this.loadView(viewName);
+        } else {
+          console.error(
+            `No se ha definido una vista para el enlace con id "${link.id}".`,
+          );
+        }
       });
     });
   }
 
-  // Configurar listeners para cambios en el hash
-  setupEventListeners2() {
-    window.addEventListener('hashchange', () => {
-      const viewName = window.location.hash.replace('#', '');
-      if (this.views[viewName]) {
-        this.loadView2(viewName);
-      }
-    });
-  }
-
-  loadView(viewName) {
+  /*loadView(viewName) {
     // Ocultar todas las vistas
     Object.values(this.views).forEach((view) =>
       view.classList.remove('active'),
     );
     // Mostrar la vista seleccionada
     this.views[viewName].classList.add('active');
-  }
+  }*/
 
   openModal(modalName) {
     const modal = this.modals[modalName];
@@ -267,7 +272,8 @@ export class UIModule {
 
   async searchMovies(query) {
     try {
-      const omdbApi = new OMDBApi('your-api-key-here'); // Instancia de OMDBApi
+      const omdbApiKey = import.meta.env.VITE_OMDB_API_KEY;
+      const omdbApi = new OMDBApi(omdbApiKey); // Instancia de OMDBApi
       const movies = await omdbApi.searchMovies(query);
 
       if (movies && movies.Search) {
@@ -404,11 +410,47 @@ export class UIModule {
     alert('An error occurred. Please try again.');
   }
 
-  renderEventGrid() {
+  /*renderEventGrid() {
     const events = JSON.parse(localStorage.getItem('events')) || {};
+    const eventGrid = document.getElementById('event-grid');
+
+    eventGrid.innerHTML = ''; // Limpiar la grid antes de renderizar
+
+    Object.entries(events).forEach(([password, event]) => {
+      const eventCard = document.createElement('div');
+      eventCard.className = 'event-card';
+
+      eventCard.innerHTML = `
+        <h3>${event.name}</h3>
+        <p><strong>Date:</strong> ${event.date}</p>
+        <p><strong>Time:</strong> ${event.time}</p>
+        <p><strong>Description:</strong> ${event.description}</p>
+        <p><strong>Password:</strong> ${password}</p>
+      `;
+
+      eventGrid.appendChild(eventCard);
+    });
+  }*/
+
+  /*  renderEventGrid() {
+    const events = JSON.parse(localStorage.getItem('events')) || {};
+    const eventGrid = document.getElementById('event-grid');
+    eventGrid.innerHTML = ''; // Limpiar la cuadrícula antes de renderizar
+
+    Object.keys(events).forEach((key) => {
+      const event = events[key];
+      const eventCard = this.createEventCard(event);
+      eventGrid.appendChild(eventCard);
+    });
+  } */
+  renderEventGrid() {
+    const existingEvents = JSON.parse(localStorage.getItem('events')) || {};
+    if (!existingEvents) {
+      return;
+    }
     this.myEventsContainer.innerHTML = '';
 
-    Object.entries(events).forEach(([identifier, event]) => {
+    Object.entries(existingEvents).forEach(([identifier, event]) => {
       const eventCard = document.createElement('div');
       eventCard.className = 'event-card';
 
@@ -417,7 +459,6 @@ export class UIModule {
           <p><strong>Date:</strong> ${event.date}</p>
           <p><strong>Time:</strong> ${event.time}</p>
           <p><strong>Description:</strong> ${event.description}</p>
-          <p><strong>Password:</strong> ${event.password}</p>
           <div class="event-buttons">
             <button class="join-event-btn" data-identifier="${identifier}">Join Event</button>
             <button class="delete-event-btn" data-identifier="${identifier}">Delete Event</button>
@@ -445,7 +486,7 @@ export class UIModule {
   joinEvent(identifier) {
     alert(`You joined the event with identifier "${identifier}".`);
   }
-
+  /*
   deleteEvent(eventName) {
     const eventData = JSON.parse(localStorage.getItem('events')) || {};
     delete eventData[eventName]; // Eliminar evento del objeto
@@ -454,7 +495,7 @@ export class UIModule {
     this.renderEventGrid(); // Actualizar la interfaz
 
     alert(`Event "${eventName}" deleted.`);
-  }
+  }*/
 
   promptForPassword() {
     const password = prompt('Please enter your event password:');

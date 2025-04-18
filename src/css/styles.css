@@ -110,6 +110,7 @@ nav ul {
 }
 
 nav a {
+  /* Estilos base */
   color: var(--text-light);
   text-decoration: none;
   padding: 0.5rem 1rem;
@@ -118,17 +119,21 @@ nav a {
   font-weight: 500;
 }
 
-nav a:hover,
+nav a:hover {
+  background-color: rgba(var(--secondary-color), 0.5);
+  outline: none;
+}
+
 nav a:focus {
   background-color: var(--secondary-color);
   outline: none;
 }
 
 nav a.active {
+  /* Debe ir al final para prioridad */
   background-color: var(--secondary-color);
   font-weight: bold;
 }
-
 /* Breadcrumb */
 .breadcrumb {
   background-color: var(--accent-color);
@@ -141,6 +146,7 @@ nav a.active {
   flex-wrap: wrap;
   margin: 0;
   padding: 0;
+  color: var(--text-color);
 }
 
 .breadcrumb li {
@@ -243,6 +249,7 @@ main {
   align-items: center;
   align-content: flex-start;
   justify-content: flex-start;
+  background-position-y: 957px;
 }
 
 .hero-container {
@@ -424,7 +431,6 @@ main {
 }
 
 @keyframes bounce {
-
   0%,
   20%,
   50%,
@@ -758,9 +764,11 @@ button:hover {
   letter-spacing: 0.5px;
   text-shadow: 0 1px 2px black;
   box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
-  background: linear-gradient(135deg,
-      var(--accent-color),
-      var(--secondary-color));
+  background: linear-gradient(
+    135deg,
+    var(--accent-color),
+    var(--secondary-color)
+  );
   background-size: 200% 200%;
   animation: gradient 5s ease infinite;
   background-position: 0% 50%;
@@ -794,14 +802,13 @@ button:hover {
   background-color: #fef2f2;
 }
 
-.form-group input:invalid:not(:placeholder-shown)+small,
-.form-group textarea:invalid:not(:placeholder-shown)+small {
+.form-group input:invalid:not(:placeholder-shown) + small,
+.form-group textarea:invalid:not(:placeholder-shown) + small {
   color: #ef4444;
 }
 
 /* Animaciones */
 @keyframes shake {
-
   0%,
   100% {
     transform: translateX(0);
@@ -824,8 +831,8 @@ button:hover {
 }
 
 /* Estilo para campos requeridos */
-.form-group input[required]+label::after,
-.form-group textarea[required]+label::after {
+.form-group input[required] + label::after,
+.form-group textarea[required] + label::after {
   content: ' *';
   color: #ef4444;
 }

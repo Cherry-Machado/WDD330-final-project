@@ -1,27 +1,51 @@
 export class EventsModule {
   constructor(ui) {
+    this.renderEventGrid = () => {
+      this.renderEventGrid;
+    };
+    this.setupEventListener = () => {
+      this.addEventListenerById;
+    };
+    this.addEventListenerById = (id, callback) => {
+      const element = document.getElementById(id);
+      if (element) {
+        element.addEventListener('click', callback);
+      } else {
+        console.error(`Element with ID '${id}' not found.`);
+      }
+    };
     this.ui = ui; // Inyectamos el módulo de interfaz para interactuar con las vistas
-    this.setupEventListeners();
-    this.ui.loadPopularMovies(); // Cargar películas populares al abrir la aplicación
+    this.ui.renderEventGrid(); // Llamar a la función de renderizado de cuadrícula de eventos
     this.currentEvent = null; // Inicializar evento actual
   }
 
+  /*  renderEventGrid() {
+    const events = JSON.parse(localStorage.getItem('events')) || {};
+    const eventGrid = document.getElementById('event-grid');
+    eventGrid.innerHTML = ''; // Limpiar la cuadrícula antes de renderizar
+
+    Object.keys(events).forEach((key) => {
+      const event = events[key];
+      const eventCard = this.createEventCard(event);
+      eventGrid.appendChild(eventCard);
+    });
+  } */
   setupEventListeners() {
     // Enlaces de navegación
     this.addEventListenerById('home-link', () => {
-      this.ui.loadView('home-view');
+      this.ui.initNavigation('home-view');
     });
 
     this.addEventListenerById('create-event-link', () => {
-      this.ui.loadView('create-event-view');
+      this.ui.initNavigation('create-event-view');
     });
 
     this.addEventListenerById('event-link', () => {
-      this.ui.loadView('event-view');
+      this.ui.initNavigation('event-view');
     });
 
     this.addEventListenerById('my-events-link', () => {
-      this.ui.loadView('my-events-view');
+      this.ui.initNavigation('my-events-view');
     });
 
     // Modales
@@ -42,27 +66,27 @@ export class EventsModule {
     });
 
     // Búsqueda de películas
-    const searchForm = document.getElementById('search-form');
+    /* const searchForm = document.getElementById('search-form');
     searchForm.addEventListener('submit', (event) => {
       event.preventDefault();
       const query = document.getElementById('search-input').value.trim();
       if (query) {
         this.ui.searchMovies(query);
       }
-    });
+    });*/
   }
 
   // Función auxiliar para reducir repetición
-  addEventListenerById(id, callback) {
+  /*  addEventListenerById(id, callback) {
     const element = document.getElementById(id);
     if (element) {
       element.addEventListener('click', callback);
     } else {
       console.error(`Element with ID '${id}' not found.`);
     }
-  }
-  joinEvent(eventName) {
+  } */
+  /*joinEvent(eventName) {
     this.currentEvent = eventName; // Asociar usuario al evento
     alert(`You have joined the event: ${eventName}`);
-  }
+  }**/
 }
